@@ -112,3 +112,8 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+# Aliases used to resize terminal. Small (st), large (lt), original (ot).
+alias st='resize -s 15 80 > /dev/null | clear'
+alias lt='resize -s 43 80 > /dev/null | clear'
+alias ot='resize -s 24 80 > /dev/null | clear'
