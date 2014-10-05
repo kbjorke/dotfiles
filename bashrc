@@ -113,7 +113,25 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# Aliases used to resize terminal. Small (st), large (lt), original (ot).
-alias st='resize -s 15 80 > /dev/null | clear'
-alias lt='resize -s 43 80 > /dev/null | clear'
-alias ot='resize -s 24 80 > /dev/null | clear'
+# Functions used to resize terminal.
+
+function small_terminal()
+{
+   resize -s 15 80 > /dev/null
+   clear
+}
+function large_terminal()
+{
+   resize -s 43 80 > /dev/null
+   clear
+}
+function ordinary_terminal()
+{
+   resize -s 24 80 > /dev/null
+   clear
+}
+
+# Aliases used to resize terminal.
+alias st=small_terminal
+alias lt=large_terminal
+alias ot=ordinary_terminal
