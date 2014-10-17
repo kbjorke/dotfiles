@@ -5,7 +5,7 @@
 """ General settings:
 
 " Pathogen:
-call pathogen#infect('/bundle{}')
+call pathogen#infect('\bundle{}')
 call pathogen#helptags()
 
 
@@ -31,6 +31,9 @@ map <c-p> :!python % <Enter>
 
 " Disable encryption:
 set key=
+
+" Wrap text at end of editor:
+set wrap
 
 
 """ Settings for vim Latex-Suite:
@@ -60,6 +63,13 @@ let g:tex_flavor='latex'
 " Set toggle key for tagbar
 nmap <F8> :TagbarToggle<CR>
 
+""" Settings for MiniBufferExplorer:
+
+let g:miniBufExplMapWindowNavVim = 1
+let g:miniBufExplMapWindowNavArrows = 1
+let g:miniBufExplMapCTabSwitchBufs = 1
+let g:miniBufExplModSelTarget = 1
+
 
 
 
@@ -77,9 +87,7 @@ function SizeUpFunc()
     " Reset column size when Vim quits.
     au VimLeave * SizeDown
     " Bigger width to make room for line numbers and the sign markers.
-    set columns=132 lines=50
-    " Turn on line numbers.
-    " set number
+    set columns=158 lines=50
 endfunction
 command SizeUp call SizeUpFunc()
 
@@ -105,16 +113,46 @@ map <1b>Ob :SizeDown<CR>
 
 
 
-""" Startup function:
+""" IDE functions:
 
-" Here I can add functions to be run at startup of vim
-function StartUpFunc()
+" Function and command to start up IDE
+function IDEFunc()
     SizeUp
+    set number " Turn on line numbers.
     NERDTree
+    wincmd l " Move cursor to main tab
+    Tagbar
 endfunction
-command StartUp call StartUpFunc()
 
-" Run startup function at startup
-"autocmd VimEnter * StartUp
+command IDE call IDEFunc()
+
+" Function and command to end IDE
+function NormalFunc()
+    SizeDown
+    set nonumber
+    NERDTreeClose
+    TagbarClose
+endfunction
+command Normal call NormalFunc()
 
 
+" Automatically quit NERDTree
+autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
+
+" Close all open buffers on entering a window if the only
+" buffer that's left is the NERDTree buffer
+function! s:CloseIfOnlyNerdTreeLeft()
+  if exists("t:NERDTreeBufName")
+    if bufwinnr(t:NERDTreeBufName) != -1
+      if winnr("$") == 1
+        SizeDown
+        q
+      endif
+    endif
+  endif
+endfunction
+
+
+""" Tagbar key bindings
+nmap <leader>l <ESC>:TagbarToggle<cr>
+imap <leader>l <ESC>:TagbarToggle<cr>i
