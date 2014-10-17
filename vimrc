@@ -5,8 +5,8 @@
 """ General settings:
 
 " Pathogen:
-call pathogen#infect('\bundle{}')
-call pathogen#helptags()
+execute pathogen#infect()
+execute pathogen#helptags()
 
 
 " Canges tab-character to insert a given number of white spaces,
