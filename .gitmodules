@@ -10,3 +10,6 @@
 [submodule "vim/bundle/minibufexpl"]
 	path = vim/bundle/minibufexpl
 	url = https://github.com/fholgado/minibufexpl.vim.git
+[submodule "dir_colors/dircolors-solarized"]
+	path = dir_colors/dircolors-solarized
+	url = https://github.com/seebi/dircolors-solarized.git
