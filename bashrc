@@ -136,3 +136,8 @@ function ordinary_terminal()
 alias st=small_terminal
 alias lt=large_terminal
 alias ot=ordinary_terminal
+
+
+# Setting up directory colors for terminal:
+# Alternatives: 256dark, ansi-dark, ansi-light, ansi-universal
+eval `dircolors ~/.dir_colors/dircolors-solarized/dircolors.ansi-dark`
