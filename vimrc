@@ -19,8 +19,8 @@ set smartindent
 set autoindent
 
 " Use ctrl-[hjkl] to toggle between split windows.
-nmap <silent> <c-k> :wincmd k<CR>
-nmap <silent> <c-j> :wincmd j<CR>
+nmap <silent> <c-u> :wincmd k<CR>
+nmap <silent> <c-n> :wincmd j<CR>
 nmap <silent> <c-h> :wincmd h<CR>
 nmap <silent> <c-l> :wincmd l<CR>
 
@@ -124,8 +124,8 @@ function IDEFunc()
     SizeUp
     set number " Turn on line numbers.
     NERDTree
-    wincmd l " Move cursor to main tab
     Tagbar
+    wincmd l " Move cursor to main tab
 endfunction
 
 command IDE call IDEFunc()
@@ -137,6 +137,7 @@ function NormalFunc()
     NERDTreeClose
     TagbarClose
 endfunction
+
 command Normal call NormalFunc()
 
 
