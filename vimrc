@@ -8,7 +8,6 @@
 execute pathogen#infect()
 execute pathogen#helptags()
 
-
 " Canges tab-character to insert a given number of white spaces,
 " so that tab can be used as indent:
 set tabstop=4
@@ -72,7 +71,7 @@ let g:miniBufExplModSelTarget = 1
 
 """ Settings for MiniBufferExplorer:
 
-syntax enable
+syntax on
 set background=dark
 colorscheme solarized
 
