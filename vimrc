@@ -70,6 +70,11 @@ let g:miniBufExplMapWindowNavArrows = 1
 let g:miniBufExplMapCTabSwitchBufs = 1
 let g:miniBufExplModSelTarget = 1
 
+""" Settings for MiniBufferExplorer:
+
+syntax enable
+set background=dark
+colorscheme solarized
 
 
 
