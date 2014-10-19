@@ -79,13 +79,18 @@ This section describes how to install these dotfiles, so that they can
 apply to the system.
 
 **Installation:**
+
 Once this respository is downloaded and saved as \dotfiles in the home
 directory the dotfiles from the repository can be set up by runing the
 bash script makesymlinks.sh. This script moves old dotfiles to a folder
 called \dotfiles_old then makes soft links from the dotfiles in the
-\dotfiles folder in the home directory.
+\dotfiles folder in the home directory. Command to run the script:
+```
+bash maksymlinks.sh
+```
 
 **Updating Vim plugins:**
+
 All the Vim plugins that I have got from other Git repositories I have
 included as submodules in order to be able to keep them up to date.
 
