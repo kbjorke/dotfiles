@@ -146,3 +146,39 @@ that call the resize program. All terminal sizes have a width of
 - `st` : Small terminal, hight of 15 spaces
 - `ot` : Ordinary terminal, hight of 23 spaces
 - `lt` : Large terminal, hight of 43 spaces
+
+## Vim features
+
+This section contains the user specified Vim features I have 
+included in my vimrc file and in specific filetype setting files.
+
+### General features:
+
+This subsection contains the general features that can be used for all
+Vim sessions.
+
+**Key mappings:**
+
+Toggle between split windows:
+- <ctrl> + h : Left
+- <ctrl> + n : Down
+- <ctrl> + i : Up
+- <ctrl> + l : Right
+
+**IDE setup:**
+
+I have made my own setup for Vim as and IDE where I use the following
+plugins:
+- MiniBufExplorer
+- Tagbar
+- NERDTree
+
+The IDE setting also makes the terminal window larger so that it can
+be used effectivly for programming.
+
+The setup is based on a function in the vimrc file valled IDEFunc that 
+calls the necessary commands for the enviroment to be set up.
+
+To enact the setup use the command `:IDE` in Vim.
+
+To go back to normal setup use the command `:Normal` in IDE mode.
