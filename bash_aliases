@@ -1,10 +1,17 @@
 # File to contain bash aliases:
 
-# ls aliases:
+# Alias ls commands
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
+# Alias git commands
+alias g='git'
+alias gst='git status'
+alias gad='git add'
+alias gcm='git commit -m'
+alias gp='git push'
+alias gd='git diff'
 
 
 # Functions used to resize terminal.
@@ -28,11 +35,3 @@ function ordinary_terminal()
 alias st=small_terminal
 alias lt=large_terminal
 alias ot=ordinary_terminal
-
-# Alias git commands
-alias g='git'
-alias gst='git status'
-alias gad='git add'
-alias gcm='git commit -m'
-alias gp='git push'
-alias gd='git diff'
