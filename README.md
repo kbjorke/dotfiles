@@ -108,6 +108,6 @@ The aliases are calls to functions defined in the bash_aliases file
 that call the resize program. All terminal sizes have a width of 
 80 spaces, what differs is the hight of the terminal window.
 
--`st` : Small terminal, hight of 15 spaces
--`lt` : Large terminal, hight of 43 spaces
--`ot` : Ordinary terminal, hight of 23 spaces
+- `st` : Small terminal, hight of 15 spaces
+- `lt` : Large terminal, hight of 43 spaces
+- `ot` : Ordinary terminal, hight of 23 spaces
