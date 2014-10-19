@@ -22,12 +22,13 @@ This section specifies the operations system and software for which these
 dotfiles are developed and used under.
 
 **Operation system:**
-`kristian@kristian-pc:~$ lsb_release -a
-No LSB modules are available.
-Distributor ID: Ubuntu
-Description:    Ubuntu 14.04.1 LTS
-Release:    14.04
-Codename:   trusty`
+
+`kristian@kristian-pc:~$ lsb_release -a`
+`No LSB modules are available.`
+`Distributor ID: Ubuntu`
+`Description:    Ubuntu 14.04.1 LTS`
+`Release:    14.04`
+`Codename:   trusty`
 
 **Gnome terminal:**
 `kristian@kristian-pc:~$ apt-cache show gnome-shell | grep Version
