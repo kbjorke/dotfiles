@@ -73,6 +73,36 @@ gcc (Ubuntu 4.8.2-19ubuntu1) 4.8.2
 Copyright (C) 2013 Free Software Foundation, Inc.
 ```
 
+## Installation and usage:
+
+This section describes how to install these dotfiles, so that they can
+apply to the system.
+
+**Installation:**
+Once this respository is downloaded and saved as \dotfiles in the home
+directory the dotfiles from the repository can be set up by runing the
+bash script makesymlinks.sh. This script moves old dotfiles to a folder
+called \dotfiles_old then makes soft links from the dotfiles in the
+\dotfiles folder in the home directory.
+
+**Updating Vim plugins:**
+All the Vim plugins that I have got from other Git repositories I have
+included as submodules in order to be able to keep them up to date.
+
+Also folders for the Solarized colorschemes for the terminal are kept as
+submodules.
+
+To update the a specific submodule go to the submodules folder and run
+the command:
+```
+git pull origin master
+```
+
+To update all submodules run the following command in the \dotfiles folder:
+```
+git submodule foreach git pull origin master
+```
+
 ## Terminal features:
 
 This section contains the user specified terminal features I have 
