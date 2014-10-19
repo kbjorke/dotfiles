@@ -19,7 +19,7 @@ set smartindent
 set autoindent
 
 " Use ctrl-[hjkl] to toggle between split windows.
-nmap <silent> <c-u> :wincmd k<CR>
+nmap <silent> <c-i> :wincmd k<CR>
 nmap <silent> <c-n> :wincmd j<CR>
 nmap <silent> <c-h> :wincmd h<CR>
 nmap <silent> <c-l> :wincmd l<CR>
