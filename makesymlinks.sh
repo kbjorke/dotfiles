@@ -7,6 +7,11 @@
 # Original created by Michael J. Smalley at
 # https://github.com/michaeljsmalley/dotfiles
 ############################
+# To run script make sure the dotfiles directory is places in home
+# directory. Then type the following command in the dotfiles directory:
+# 
+# bash makesymlinks.sh
+############################
 
 ########## Variables
 
