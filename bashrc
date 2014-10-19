@@ -114,6 +114,9 @@ if ! shopt -oq posix; then
   fi
 fi
 
+
+### USER DEFINED SETTINGS: ###
+
 # Functions used to resize terminal.
 
 function small_terminal()
