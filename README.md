@@ -160,10 +160,10 @@ Vim sessions.
 **Key mappings:**
 
 Toggle between split windows:
-- <ctrl> + h : Left
-- <ctrl> + n : Down
-- <ctrl> + i : Up
-- <ctrl> + l : Right
+- ctrl + h : Left
+- ctrl + n : Down
+- ctrl + i : Up
+- ctrl + l : Right
 
 **IDE setup:**
 
