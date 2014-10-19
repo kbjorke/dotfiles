@@ -85,11 +85,6 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
@@ -116,30 +111,6 @@ fi
 
 
 ### USER DEFINED SETTINGS: ###
-
-# Functions used to resize terminal.
-
-function small_terminal()
-{
-   resize -s 15 80 > /dev/null
-   clear
-}
-function large_terminal()
-{
-   resize -s 43 80 > /dev/null
-   clear
-}
-function ordinary_terminal()
-{
-   resize -s 24 80 > /dev/null
-   clear
-}
-
-# Aliases used to resize terminal.
-alias st=small_terminal
-alias lt=large_terminal
-alias ot=ordinary_terminal
-
 
 # Setting up directory colors for terminal:
 # Alternatives: 256dark, ansi-dark, ansi-light, ansi-universal

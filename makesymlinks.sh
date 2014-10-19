@@ -13,7 +13,7 @@
 dir=~/dotfiles                    # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
 # list of files/folders to symlink in homedir:
-files="bashrc vim vimrc dir_colors" 
+files="bashrc bash_aliases vim vimrc dir_colors" 
 ##########
 
 # create dotfiles_old in homedir
