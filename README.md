@@ -72,3 +72,42 @@ kristian@kristian-pc:~$ gcc --version
 gcc (Ubuntu 4.8.2-19ubuntu1) 4.8.2
 Copyright (C) 2013 Free Software Foundation, Inc.
 ```
+
+## Terminal features:
+
+This section contains the user specified terminal features I have 
+included in my basrc or bash_aliases files.
+
+### Aliases:
+
+This is a overview of the bash aliases that I have in my I have added a
+short explanation of its use.
+
+#### ls commands:
+```
+ll = 'ls -alF'
+la = 'ls -A'
+l  = 'ls -CF'
+```
+
+#### git commands:
+```
+g   = 'git'
+gst = 'git status'
+gad = 'git add'
+gcm = 'git commit -m'
+gp  = 'git push'
+gd  = 'git diff'
+```
+
+
+#### resize terminal commands:
+
+These commands are made to change the size of the terminal window.
+The aliases are calls to functions defined in the bash_aliases file
+that call the resize program. All terminal sizes have a width of 
+80 spaces, what differs is the hight of the terminal window.
+
+-`st` : Small terminal, hight of 15 spaces
+-`lt` : Large terminal, hight of 43 spaces
+-`ot` : Ordinary terminal, hight of 23 spaces
