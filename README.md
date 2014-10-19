@@ -83,14 +83,14 @@ included in my basrc or bash_aliases files.
 This is a overview of the bash aliases that I have in my I have added a
 short explanation of its use.
 
-#### ls commands:
+**ls commands**:
 ```
 ll = 'ls -alF'
 la = 'ls -A'
 l  = 'ls -CF'
 ```
 
-#### git commands:
+**git commands**:
 ```
 g   = 'git'
 gst = 'git status'
@@ -101,7 +101,7 @@ gd  = 'git diff'
 ```
 
 
-#### resize terminal commands:
+**resize terminal commands**:
 
 These commands are made to change the size of the terminal window.
 The aliases are calls to functions defined in the bash_aliases file
