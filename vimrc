@@ -18,7 +18,7 @@ set expandtab
 set smartindent
 set autoindent
 
-" Use ctrl-[hjkl] to toggle between split windows.
+" Use ctrl-[inkl] to toggle between split windows.
 nmap <silent> <c-i> :wincmd k<CR>
 nmap <silent> <c-n> :wincmd j<CR>
 nmap <silent> <c-h> :wincmd h<CR>
@@ -69,7 +69,7 @@ let g:miniBufExplMapWindowNavArrows = 1
 let g:miniBufExplMapCTabSwitchBufs = 1
 let g:miniBufExplModSelTarget = 1
 
-""" Settings for MiniBufferExplorer:
+""" Settings for Solarized color scheme:
 
 syntax on
 set background=dark
