@@ -27,36 +27,47 @@ kristian@kristian-pc:~$ lsb_release -a
 No LSB modules are available.
 Distributor ID: Ubuntu
 Description:    Ubuntu 14.04.1 LTS
-Release:    14.04
-Codename:   trusty
+Release:        14.04
+Codename:       trusty
 ```
 
 **Gnome terminal:**
-`kristian@kristian-pc:~$ apt-cache show gnome-shell | grep Version
+```
+kristian@kristian-pc:~$ apt-cache show gnome-shell | grep Version
 Version: 3.10.4-0ubuntu5.2
-Version: 3.10.4-0ubuntu5`
+Version: 3.10.4-0ubuntu5
+```
 
 **Vim:**
-`kristian@kristian-pc:~$ vim --version
+```
+kristian@kristian-pc:~$ vim --version
 VIM - Vi IMproved 7.4 (2013 Aug 10, compiled Jan  2 2014 19:39:32)
 Inkluderte patcher: 1-52
-Modifisert av pkg-vim-maintainers@lists.alioth.debian.org`
+Modifisert av pkg-vim-maintainers@lists.alioth.debian.org
+```
 
 **Python:**
-`kristian@kristian-pc:~$ python --version
-Python 2.7.6`
+```
+kristian@kristian-pc:~$ python --version
+Python 2.7.6
+```
 
 **LaTeX:**
-`kristian@kristian-pc:~$ tex --version
+```
+kristian@kristian-pc:~$ tex --version
 TeX 3.1415926 (TeX Live 2013/Debian)
 kpathsea version 6.1.1
 Copyright 2013 D.E. Knuth.
+
 kristian@kristian-pc:~$ latex --version
 pdfTeX 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian)
 kpathsea version 6.1.1
-Copyright 2013 Peter Breitenlohner (eTeX)/Han The Thanh (pdfTeX).`
+Copyright 2013 Peter Breitenlohner (eTeX)/Han The Thanh (pdfTeX).
+```
 
 **C++:**
-`kristian@kristian-pc:~$ gcc --version
+```
+kristian@kristian-pc:~$ gcc --version
 gcc (Ubuntu 4.8.2-19ubuntu1) 4.8.2
-Copyright (C) 2013 Free Software Foundation, Inc.`
+Copyright (C) 2013 Free Software Foundation, Inc.
+```
