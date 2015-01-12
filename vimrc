@@ -159,5 +159,5 @@ endfunction
 
 
 """ Tagbar key bindings
-nmap <leader>l <ESC>:TagbarToggle<cr>
-imap <leader>l <ESC>:TagbarToggle<cr>i
+"nmap <leader>l <ESC>:TagbarToggle<cr>
+"imap <leader>l <ESC>:TagbarToggle<cr>i
