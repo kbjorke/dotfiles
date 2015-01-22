@@ -57,6 +57,7 @@ filetype indent on
 " The following changes the default filetype back to 'tex':
 let g:tex_flavor='latex'
 
+
 """ Settings for tagbar:
 
 " Set toggle key for tagbar
