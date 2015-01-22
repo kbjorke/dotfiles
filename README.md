@@ -202,7 +202,7 @@ a number of warnings in order for the compilation to run smoothly.
 **Viewing:**
 
 In order to open a viewer to view the current document from insude the latex
-suite run the command '\ (leader) + lv'. As I use it this opens the PDF 
+suite run the command `\ (leader) + lv`. As I use it this opens the PDF 
 document in the evince viewer.
 
 No customization has been done to the viewing function.
