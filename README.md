@@ -192,9 +192,17 @@ vimrc file.
 **Compilation:**
 
 To compile the .tex file to a .pdf file inside the latex suite run the command
-`\ (leader) + ll`.
+`\ (leader) + ll`. 
 
 Compilation rules has been set to use the commands `latex`, `dvips` and `ps2pdf`
 in succesion so that it first makes a .dvi file from the .tex file, then
 a .ps file and then finally the .pdf file. In addition the compilation ignores
 a number of warnings in order for the compilation to run smoothly.
+
+**Viewing:**
+
+In order to open a viewer to view the current document from insude the latex
+suite run the command '\ (leader) + lv'. As I use it this opens the PDF 
+document in the evince viewer.
+
+No customization has been done to the viewing function.
