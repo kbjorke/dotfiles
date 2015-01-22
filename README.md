@@ -176,9 +176,25 @@ plugins:
 The IDE setting also makes the terminal window larger so that it can
 be used effectivly for programming.
 
-The setup is based on a function in the vimrc file valled IDEFunc that 
+The setup is based on a function in the vimrc file called IDEFunc that 
 calls the necessary commands for the enviroment to be set up.
 
 To enact the setup use the command `:IDE` in Vim.
 
 To go back to normal setup use the command `:Normal` in IDE mode.
+
+### VIM-LaTeX suite features:
+
+Customizations to the VIM-LaTeX suite are mainly done in the 
+vim/ftplugin/tex.vim file, while some customizations are also done in the
+vimrc file.
+
+**Compilation:**
+
+To compile the .tex file to a .pdf file inside the latex suite run the command
+`\ (leader) + ll`.
+
+Compilation rules has been set to use the commands `latex`, `dvips` and `ps2pdf`
+in succesion so that it first makes a .dvi file from the .tex file, then
+a .ps file and then finally the .pdf file. In addition the compilation ignores
+a number of warnings in order for the compilation to run smoothly.
