@@ -58,6 +58,19 @@ filetype indent on
 let g:tex_flavor='latex'
 
 
+""" Filetype specific standard templates for new files:
+
+:au BufNewFile *.py silent! 0r  ~/.vim/templates/kb_standard.py
+:au BufNewFile *.tex silent! 0r  ~/.vim/templates/kb_standard.tex
+
+"augroup templates
+"    au!
+"        " read in templates files
+"    autocmd BufNewFile *.* silent! execute '0r
+"    ~/vim/templates/kb_standard.'.expand("<afile>:e")
+"augroup END
+
+
 """ Settings for tagbar:
 
 " Set toggle key for tagbar
