@@ -61,7 +61,7 @@ let g:tex_flavor='latex'
 """ Filetype specific standard templates for new files:
 
 autocmd BufNewFile *.py silent! 0r  ~/.vim/templates/kb_standard.py
-autocmd BufNewFile *.tex TTemplate article
+autocmd BufNewFile *.tex TTemplate kb_standard
 
 "augroup templates
 "    au!
