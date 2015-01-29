@@ -26,7 +26,11 @@ nmap <silent> <c-l> :wincmd l<CR>
 
 " Mapping of ctrl-p to running python-script (should be put as python
 " specific mapping):
-map <c-p> :!python % <Enter>
+" map <c-p> :!python % <Enter>
+
+" Mapping of ctrl-p to running R-script (should be put as R
+" specific mapping):
+" map <c-p> :!Rscript % <Enter>
 
 " Disable encryption:
 set key=
