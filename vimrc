@@ -8,6 +8,10 @@
 execute pathogen#infect()
 execute pathogen#helptags()
 
+" Activating syntax highlighting and filetype detected
+syntax on
+filetype on
+
 " Canges tab-character to insert a given number of white spaces,
 " so that tab can be used as indent:
 set tabstop=4
@@ -23,14 +27,6 @@ nmap <silent> <c-i> :wincmd k<CR>
 nmap <silent> <c-n> :wincmd j<CR>
 nmap <silent> <c-h> :wincmd h<CR>
 nmap <silent> <c-l> :wincmd l<CR>
-
-" Mapping of ctrl-p to running python-script (should be put as python
-" specific mapping):
-" map <c-p> :!python % <Enter>
-
-" Mapping of ctrl-p to running R-script (should be put as R
-" specific mapping):
-" map <c-p> :!Rscript % <Enter>
 
 " Disable encryption:
 set key=
@@ -66,13 +62,6 @@ let g:tex_flavor='latex'
 
 autocmd BufNewFile *.py silent! 0r  ~/.vim/templates/kb_standard.py
 autocmd BufNewFile *.tex TTemplate kb_standard
-
-"augroup templates
-"    au!
-"        " read in templates files
-"    autocmd BufNewFile *.* silent! execute '0r
-"    ~/vim/templates/kb_standard.'.expand("<afile>:e")
-"augroup END
 
 
 """ Settings for tagbar:
