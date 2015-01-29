@@ -8,7 +8,7 @@ This repository consists the dotfiles that I have customized for my use and
 would like to keep and continue to develop. At the current time the content 
 of this repository is mainly focused on my Gnome Terminal environment, 
 through the bashrc file, and my Vim terminal text editor, which is used for
-programming in Python, LaTeX and C++. At a later time I might add other 
+programming in Python, LaTeX, C++ and R. At a later time I might add other 
 dotfiles, if there are some other customizations that I would like to 
 preserve.
 
@@ -71,6 +71,14 @@ Copyright 2013 Peter Breitenlohner (eTeX)/Han The Thanh (pdfTeX).
 kristian@kristian-pc:~$ gcc --version
 gcc (Ubuntu 4.8.2-19ubuntu1) 4.8.2
 Copyright (C) 2013 Free Software Foundation, Inc.
+```
+
+**R:**
+```
+kristian@kristian-pc:~$ R --version
+R version 3.0.2 (2013-09-25) -- "Frisbee Sailing"
+Copyright (C) 2013 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
 ```
 
 ## Installation and usage:
@@ -206,3 +214,37 @@ suite run the command `\ (leader) + lv`. As I use it this opens the PDF
 document in the evince viewer.
 
 No customization has been done to the viewing function.
+
+**Templates:**
+
+I have made a standard template named kb_standard.tex in the vim/templates
+wich is activated when new .tex files are opened. The purpose of this 
+template is to have a standard template that creates a header for the file
+and includes what I uses in most of my latex files.
+
+### Python scripting:
+
+File specific setting for python .py scripts are primarily set in the
+vim/ftplugin/python.vim file. Some setting may be set in the vimrc file,
+but i prefere to keep all the file specific setting outside the general
+vimrc file.
+
+**Key mappings:**
+
+`ctrl + p` : Runs the current python script.
+
+**Templates:**
+
+I have made a standard template named kb_standard.py in the vim/templates
+wich is activated when new .py files are opened. The purpose of this 
+template is to have a standard template that creates a header for the file
+and import what I uses in most of my latex files.
+
+### R scripting:
+
+File specific setting for R .r scripts are primarily set in the
+vim/ftplugin/r.vim file.
+
+**Key mappings:**
+
+`ctrl + p` : Runs the current R script using the `Rscript` program.
