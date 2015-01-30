@@ -181,6 +181,9 @@ plugins:
 - Tagbar
 - NERDTree
 
+![Alt text](https://github.com/kbjorke/dotfiles?raw=true 
+"Example screenshot of personal IDE for vim. Shows python scripting.")
+
 The IDE setting also makes the terminal window larger so that it can
 be used effectivly for programming.
 
