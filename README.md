@@ -88,14 +88,33 @@ apply to the system.
 
 **Installation:**
 
-Once this respository is downloaded and saved as \dotfiles in the home
-directory the dotfiles from the repository can be set up by runing the
+Clone this repository to the home directory as \dotfiles by running in 
+the home directory:
+```
+git clone https://github.com/kbjorke/dotfiles.git
+```
+(Alternatively do this, which includes the submodules so you can skip
+the submodule update step below.
+```
+git clone --recursive https://github.com/kbjorke/dotfiles.git
+```
+)
+
+Once this respository is cloned in the home folder the dotfiles from the 
+repository can be set up by runing the
 bash script makesymlinks.sh. This script moves old dotfiles to a folder
 called \dotfiles_old then makes soft links from the dotfiles in the
 \dotfiles folder in the home directory. Command to run the script:
 ```
 bash maksymlinks.sh
 ```
+
+Then to include the submodules run the following in the \dotfiles folder:
+```
+git submodule update --init --recursive
+```
+
+
 
 **Updating Vim plugins:**
 
