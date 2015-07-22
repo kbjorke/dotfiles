@@ -167,12 +167,13 @@ gd  = 'git diff'
 
 These commands are made to change the size of the terminal window.
 The aliases are calls to functions defined in the bash_aliases file
-that call the resize program. All terminal sizes have a width of 
-80 spaces, what differs is the hight of the terminal window.
+that call the resize program.
 
-- `st` : Small terminal, hight of 15 spaces
-- `ot` : Ordinary terminal, hight of 23 spaces
-- `lt` : Large terminal, hight of 43 spaces
+- `st` : Small terminal, changes hight to 15 spaces
+- `lt` : Large terminal, changes hight to 43 spaces
+- `wt` : Wide terminal, changes width to 160 spaces
+- `ot` : Ordinary terminal, change hight to 23 spaces and width to 80 spaces
+- 
 
 ## Vim features
 
