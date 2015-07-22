@@ -173,7 +173,6 @@ that call the resize program.
 - `lt` : Large terminal, changes hight to 43 spaces
 - `wt` : Wide terminal, changes width to 160 spaces
 - `ot` : Ordinary terminal, change hight to 23 spaces and width to 80 spaces
-- 
 
 ## Vim features
 
