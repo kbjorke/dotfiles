@@ -170,9 +170,10 @@ The aliases are calls to functions defined in the bash_aliases file
 that call the resize program.
 
 - `st` : Small terminal, changes hight to 15 spaces
+- `ot` : Ordinary terminal, change hight to 23 spaces
 - `lt` : Large terminal, changes hight to 43 spaces
 - `wt` : Wide terminal, changes width to 160 spaces
-- `ot` : Ordinary terminal, change hight to 23 spaces and width to 80 spaces
+- `tt` : Thin terminal, changes width to 80 spaces
 
 ## Vim features
 

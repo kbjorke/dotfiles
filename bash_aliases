@@ -27,12 +27,17 @@ function large_terminal()
 }
 function ordinary_terminal()
 {
-   resize -s 24 80 > /dev/null
+   resize -s 24 $COLUMNS > /dev/null
    clear
 }
 function wide_terminal()
 {
    resize -s $LINES 160 > /dev/null
+   clear
+}
+function thin_terminal()
+{
+   resize -s $LINES 80 > /dev/null
    clear
 }
 
@@ -41,3 +46,4 @@ alias st=small_terminal
 alias lt=large_terminal
 alias ot=ordinary_terminal
 alias wt=wide_terminal
+alias tt=thin_terminal
