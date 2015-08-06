@@ -13,6 +13,17 @@ alias gcm='git commit -m'
 alias gp='git push'
 alias gd='git diff'
 
+# A quick way to get out of current directory
+alias ..='cd ../'
+alias .2='cd ../../'
+alias .3='cd ../../../'
+alias .4='cd ../../../../'
+alias .5='cd ../../../../../'
+
+# Shortcuts to get to .basrc and .vimrc files
+alias bashrc='vim /home/kristian/dotfiles/.bashrc'
+alias vimrc='vim /home/kristian/dotfiles/.vimrc'
+
 
 # Functions used to resize terminal.
 function small_terminal()
@@ -47,3 +58,5 @@ alias lt=large_terminal
 alias ot=ordinary_terminal
 alias wt=wide_terminal
 alias tt=thin_terminal
+
+
