@@ -20,9 +20,10 @@ alias .3='cd ../../../'
 alias .4='cd ../../../../'
 alias .5='cd ../../../../../'
 
-# Shortcuts to get to .basrc and .vimrc files
-alias bashrc='vim -c "IDE" /home/kristian/dotfiles/.bashrc'
-alias vimrc='vim -c "IDE" /home/kristian/dotfiles/.vimrc'
+# Shortcuts to get to .basrc and .vimrc files and dotfiles
+alias bashrc='vim -c "IDE" /home/kristian/dotfiles/bashrc'
+alias vimrc='vim -c "IDE" /home/kristian/dotfiles/vimrc'
+alias gotodotfiles='cd /home/kristian/dotfiles/'
 
 
 # Functions used to resize terminal.
