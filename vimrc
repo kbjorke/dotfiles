@@ -81,9 +81,9 @@ let g:miniBufExplModSelTarget = 1
 
 """ Settings for Solarized color scheme:
 
-syntax on
-set background=dark
-colorscheme solarized
+"syntax enable
+"set background=dark
+"colorscheme solarized
 
 
 
