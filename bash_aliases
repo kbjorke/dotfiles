@@ -28,6 +28,9 @@ alias vimrc='vim -c "IDE" /home/kristian/dotfiles/vimrc'
 # Shortcut to get to the dotfiles folder
 alias gotodotfiles='cd /home/kristian/dotfiles/'
 
+# Shortcut to get to the MSc project folder
+alias gotoMSc='cd /home/kristian/Dokument/University\ of\ Sussex/MScProject'
+
 # Alias to open vim in IDE environment
 alias vimIDE='vim -c "IDE"'
 
