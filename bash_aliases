@@ -31,6 +31,9 @@ alias gotodotfiles='cd /home/kristian/dotfiles/'
 # Alias to open vim in IDE environment
 alias vimIDE='vim -c "IDE"'
 
+# Alias that make you pipe to clipboard. Requires xclip.
+alias clipboard='xclip -sel clip'
+
 
 # Functions used to resize terminal.
 function small_terminal()
