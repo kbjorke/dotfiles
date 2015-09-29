@@ -119,3 +119,4 @@ eval `dircolors ~/.dir_colors/dircolors-solarized/dircolors.ansi-dark`
 # Set up ROOT
 source /home/kristian/Nedlastingar/root-6.05.02/bin/thisroot.sh
 
+MSc="$HOME/Dokument/University_of_Sussex/MScProject"
