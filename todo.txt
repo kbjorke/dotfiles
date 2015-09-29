@@ -1,4 +1,8 @@
 # List containing things I would like to implement in my dotfiles:
 
 - Make a satisfying way in vim to copy and paste from/to clipboard.
+- Maybe change to a better colorscheme, current one to dark compared
+  to web browser.
+- Add commandline argument feature to makesymlink.sh script.
+- Make ssh alias into feynman.
 
