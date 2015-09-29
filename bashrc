@@ -115,3 +115,7 @@ fi
 # Setting up directory colors for terminal:
 # Alternatives: 256dark, ansi-dark, ansi-light, ansi-universal
 eval `dircolors ~/.dir_colors/dircolors-solarized/dircolors.ansi-dark`
+
+# Set up ROOT
+source /home/kristian/Nedlastingar/root-6.05.02/bin/thisroot.sh
+

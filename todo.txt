@@ -1,0 +1,4 @@
+# List containing things I would like to implement in my dotfiles:
+
+- Make a satisfying way in vim to copy and paste from/to clipboard.
+
