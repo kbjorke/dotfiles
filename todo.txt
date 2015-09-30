@@ -5,4 +5,5 @@
   to web browser.
 - Add commandline argument feature to makesymlink.sh script.
 - Make ssh alias into feynman.
+- Make a way to shortcut to the newes MSc logfile
 
