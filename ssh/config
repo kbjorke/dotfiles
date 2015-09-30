@@ -1,3 +1,9 @@
 Host feynman
     HostName feynman.hpc.susx.ac.uk
     User kb339
+    ForwardX11 yes
+
+Host apollo
+    Hostname apollo.hpc.susx.ac.uk
+    User kb339
+    ForwardX11 yes
