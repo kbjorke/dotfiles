@@ -22,7 +22,7 @@ alias .5='cd ../../../../../'
 
 # Shortcuts to get to .basrc and .vimrc files and dotfiles
 alias bashrc='vim -c "IDE" /home/kristian/dotfiles/bashrc'
-alias bash_aliases='vim -c "IDE" /home/kristian/dotfiles/bash_aliases'
+alias bash_aliases='vim /home/kristian/dotfiles/bash_aliases'
 alias vimrc='vim -c "IDE" /home/kristian/dotfiles/vimrc'
 
 # Shortcut to get to the dotfiles folder
@@ -30,6 +30,14 @@ alias gotodotfiles='cd /home/kristian/dotfiles/'
 
 # Shortcut to get to the MSc project folder
 alias gotoMSc='cd /home/kristian/Dokument/University_of_Sussex/MScProject'
+
+# Shortcut to open MSc log
+function open_newest_logfile()
+{
+   newest_logfile=$(ls /home/kristian/Dokument/University_of_Sussex/MScProject/MScLog_kbjorke/*-MScLog_kbjorke.txt | tail -n 1)
+   vim -c "normal G $" "$newest_logfile"
+}
+alias MScLog=open_newest_logfile
 
 # Alias to open vim in IDE environment
 alias vimIDE='vim -c "IDE"'
