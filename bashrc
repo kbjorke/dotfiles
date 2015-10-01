@@ -122,15 +122,13 @@ eval `dircolors ~/.dir_colors/dircolors-solarized/dircolors.ansi-dark`
 MSc="$HOME/Dokument/University_of_Sussex/MScProject"
 
 function backup()
-{
-CurrentDir=$PWD
-
+{### NEED TO MAKE IT WORK WHEN HARD DRIVE IS MOUNTED
 Storage=/media/kristian/storage
 
 sudo mkdir $Storage
 sudo mount /dev/sda5 $Storage
 
-DirToBackup=/home/kristian/test
+DirToBackup=/home/kristian/test/
 BackupDir="$Storage/Dokumenter/MScBackup"
 
 
@@ -140,9 +138,7 @@ sudo install --directory "$BackupDir/history/$timestamp"
 sudo install --directory "$BackupDir/backup/"
 sudo install --directory "$BackupDir/log/$timestamp"
 
-cd $DirToBackup
-
-rsync --dry-run --itemize-changes --out-format="%i|%n|" --relative --recursive --update --delete --perms --owner --group --times --links --safe-links --super --one-file-system --devices . "$BackupDir/backup" | sed '/^ *$/d' > "$BackupDir/log/$timestamp/dryrun.log"
+rsync --dry-run --itemize-changes --out-format="%i|%n|"  --recursive --update --delete --perms --owner --group --times --links --safe-links --super --one-file-system --devices $DirToBackup "$BackupDir/backup" | sed '/^ *$/d' > "$BackupDir/log/$timestamp/dryrun.log"
 
 grep "^.f" "$BackupDir/log/$timestamp/dryrun.log" >> "$BackupDir/log/$timestamp/onlyfiles.log"
 grep "^.f+++++++++" "$BackupDir/log/$timestamp/onlyfiles.log" | awk -F '|' '{print $2 }' | sed 's@^/@@' >> "$BackupDir/log/$timestamp/created.log"
@@ -158,15 +154,12 @@ cat "$BackupDir/log/$timestamp/deleted.log" > /tmp/tmp.rsync.list
 cat "$BackupDir/log/$timestamp/changed.log" >> /tmp/tmp.rsync.list
 sort --output=/tmp/rsync.list --unique /tmp/tmp.rsync.list
 
-rsync --relative --update --perms --owner --group --times --links --super --files-from=/tmp/rsync.list "$BackupDir/backup" "$BackupDir/history/$timestamp/"
+rsync --update --perms --owner --group --times --links --super --files-from=/tmp/rsync.list "$BackupDir/backup" "$BackupDir/history/$timestamp/"
 
-rsync --relative --recursive --update --delete --perms --owner --group --times --links --safe-links --super --one-file-system --devices . "$BackupDir/backup"
+rsync --recursive --update --delete --perms --owner --group --times --links --safe-links --super --one-file-system --devices $DirToBackup "$BackupDir/backup"
 
 sudo umount $Storage
 sudo rm -r $Storage
 
-# Need to decide what options to use for the ssh rsync
-rsync -avz -e ssh . feynman:backup
-
-cd $CurrentDir
+rsync --archive --update --verbose --compress --rsh=ssh $DirToBackup feynman:backup
 }
