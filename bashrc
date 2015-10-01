@@ -120,3 +120,53 @@ eval `dircolors ~/.dir_colors/dircolors-solarized/dircolors.ansi-dark`
 #source /home/kristian/Nedlastingar/root-6.05.02/bin/thisroot.sh
 
 MSc="$HOME/Dokument/University_of_Sussex/MScProject"
+
+function backup()
+{
+CurrentDir=$PWD
+
+Storage=/media/kristian/storage
+
+sudo mkdir $Storage
+sudo mount /dev/sda5 $Storage
+
+DirToBackup=/home/kristian/test
+BackupDir="$Storage/Dokumenter/MScBackup"
+
+
+timestamp=$(date "+%Y-%m-%d_%H-%M-%S")
+
+sudo install --directory "$BackupDir/history/$timestamp"
+sudo install --directory "$BackupDir/backup/"
+sudo install --directory "$BackupDir/log/$timestamp"
+
+cd $DirToBackup
+
+rsync --dry-run --itemize-changes --out-format="%i|%n|" --relative --recursive --update --delete --perms --owner --group --times --links --safe-links --super --one-file-system --devices . "$BackupDir/backup" | sed '/^ *$/d' > "$BackupDir/log/$timestamp/dryrun.log"
+
+grep "^.f" "$BackupDir/log/$timestamp/dryrun.log" >> "$BackupDir/log/$timestamp/onlyfiles.log"
+grep "^.f+++++++++" "$BackupDir/log/$timestamp/onlyfiles.log" | awk -F '|' '{print $2 }' | sed 's@^/@@' >> "$BackupDir/log/$timestamp/created.log"
+grep --invert-match "^.f+++++++++" "$BackupDir/log/$timestamp/onlyfiles.log" | grep --invert-match "^.f\.\.\.pog\.\.\." | awk -F '|' '{print $2 }' | sed 's@^/@@' >> "$BackupDir/log/$timestamp/changed.log"
+#grep --invert-match "^.f+++++++++" "$BackupDir/log/$timestamp/onlyfiles.log" | awk -F '|' '{print $2 }' | sed 's@^/@@' >> "$BackupDir/log/$timestamp/changed.log"
+
+grep "^\.d" "$BackupDir/log/$timestamp/dryrun.log" | grep --invert-match "^.d\.\.\.pog\.\.\." | awk -F '|' '{print $2 }' | sed -e 's@^/@@' -e 's@^\./@@' -e 's@/$@@' >> "$BackupDir/log/$timestamp/changed.log"
+grep "^cd" "$BackupDir/log/$timestamp/dryrun.log" | awk -F '|' '{print $2 }' | sed -e 's@^/@@' -e 's@/$@@' >> "$BackupDir/log/$timestamp/created.log"
+
+grep "^*deleting" "$BackupDir/log/$timestamp/dryrun.log" | awk -F '|' '{print $2 }' >> "$BackupDir/log/$timestamp/deleted.log"
+
+cat "$BackupDir/log/$timestamp/deleted.log" > /tmp/tmp.rsync.list
+cat "$BackupDir/log/$timestamp/changed.log" >> /tmp/tmp.rsync.list
+sort --output=/tmp/rsync.list --unique /tmp/tmp.rsync.list
+
+rsync --relative --update --perms --owner --group --times --links --super --files-from=/tmp/rsync.list "$BackupDir/backup" "$BackupDir/history/$timestamp/"
+
+rsync --relative --recursive --update --delete --perms --owner --group --times --links --safe-links --super --one-file-system --devices . "$BackupDir/backup"
+
+sudo umount $Storage
+sudo rm -r $Storage
+
+# Need to decide what options to use for the ssh rsync
+rsync -avz -e ssh . feynman:backup
+
+cd $CurrentDir
+}
