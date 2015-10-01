@@ -7,3 +7,8 @@ Host apollo
     Hostname apollo.hpc.susx.ac.uk
     User kb339
     ForwardX11 yes
+
+Host sussex
+    Hostname ssh.phys.susx.ac.uk
+    User kb339
+    ForwardX11 yes
