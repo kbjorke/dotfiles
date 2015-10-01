@@ -2,8 +2,10 @@
 
 - Make a satisfying way in vim to copy and paste from/to clipboard.
 - Maybe change to a better colorscheme, current one to dark compared
-  to web browser.
+  to web browser. (perhaps ok?)
 - Add commandline argument feature to makesymlink.sh script.
-- Make ssh alias into feynman.
-- Make a way to shortcut to the newes MSc logfile
+- Make backup command/alias to copy all MSc files to my home area on
+  HPC or phys network.
+
+
 
