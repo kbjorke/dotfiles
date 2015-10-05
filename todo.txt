@@ -3,8 +3,6 @@
 - Maybe change to a better colorscheme, current one to dark compared
   to web browser. (perhaps ok?)
 - Add commandline argument feature to makesymlink.sh script.
-- Make backup command/alias to copy all MSc files to my home area on
-  HPC or phys network.
 - Make it possible to git push without writing in my username every time,
   still want to input password, though.
 
