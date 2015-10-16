@@ -4,6 +4,7 @@
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias lsR='ls -lhR'
 
 # Alias git commands
 alias g='git'
@@ -19,6 +20,9 @@ alias .2='cd ../../'
 alias .3='cd ../../../'
 alias .4='cd ../../../../'
 alias .5='cd ../../../../../'
+
+# Alias for tree command with size of files and directories
+alias trees='tree -h --du'
 
 # Shortcuts to get to .basrc and .vimrc files and dotfiles
 alias bashrc='vim -c "IDE" /home/kristian/dotfiles/bashrc'
