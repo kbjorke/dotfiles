@@ -5,6 +5,8 @@
 - Add commandline argument feature to makesymlink.sh script.
 - Make it possible to git push without writing in my username every time,
   still want to input password, though.
+- Explore the possibilies of suing git alliases in .gitconfig, maybe include
+  this file in the dotfiles.
 
 
 
