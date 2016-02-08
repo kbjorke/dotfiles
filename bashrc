@@ -119,6 +119,19 @@ eval `dircolors ~/.dir_colors/dircolors-solarized/dircolors.ansi-dark`
 # Set up ROOT
 #source /home/kristian/Nedlastingar/root-6.05.02/bin/thisroot.sh
 
+# GnuPG setup for gpg-agent
+envfile="$HOME/.gnupg/gpg-agent.env"
+if [[ -e "$envfile" ]] && kill -0 $(grep GPG_AGENT_INFO "$envfile" | cut -d: -f 2) 2>/dev/null; then
+        eval "$(cat "$envfile")"
+    else
+            eval "$(gpg-agent --daemon --enable-ssh-support --write-env-file "$envfile")"
+        fi
+        export GPG_AGENT_INFO  # the env file does not contain the export statement
+        export SSH_AUTH_SOCK   # enable gpg-agent for ssh
+
+# Sets the Mail Environment Variable
+MAIL=/var/spool/mail/kristian && export MAIL
+
 MSc="$HOME/Dokument/University_of_Sussex/MScProject"
 
 function BackupMSc()
@@ -178,7 +191,7 @@ function BackupMSc()
 
     echo "Main backup at: $mount_point/Dokumenter/MScBackup"
     
-    rsync --archive --update --verbose --compress --rsh=ssh $DirToBackup feynman:MScBackup
+    rsync --archive --update --verbose --human-readable --compress --rsh=ssh $DirToBackup feynman:MScBackup
 
     echo "Secondary backup at: kb339@feynman.hpc.susx.ac.uk:MScBackup"
 }
