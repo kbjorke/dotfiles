@@ -166,7 +166,7 @@ function BackupMSc()
     
     grep "^.f" "$BackupDir/log/$timestamp/dryrun.log" >> "$BackupDir/log/$timestamp/onlyfiles.log"
     grep "^.f+++++++++" "$BackupDir/log/$timestamp/onlyfiles.log" | awk -F '|' '{print $2 }' | sed 's@^/@@' >> "$BackupDir/log/$timestamp/created.log"
-    grep --invert-match "^.f+++++++++" "$BackupDir/log/$timestamp/onlyfiles.log" | grep --invert-match "^.f\.\.\.pog\.\.\." | awk -F '|' '{print $2 }' | sed 's@^/@@' >> "$BackupDir/log/$timestamp/changed.log"
+    grep --invert-match "^.f+++++++++" "$BackupDir/log/$timestamp/onlyfiles.log" | grep --invert-match "^.f\.\.\.pog\.\.\." | grep --invert-match "^.f\.\.\.p\.\.\.\.\." | awk -F '|' '{print $2 }' | sed 's@^/@@' >> "$BackupDir/log/$timestamp/changed.log"
     
     grep "^\.d" "$BackupDir/log/$timestamp/dryrun.log" | grep --invert-match "^.d\.\.\.pog\.\.\." | awk -F '|' '{print $2 }' | sed -e 's@^/@@' -e 's@^\./@@' -e 's@/$@@' >> "$BackupDir/log/$timestamp/changed.log"
     grep "^cd" "$BackupDir/log/$timestamp/dryrun.log" | awk -F '|' '{print $2 }' | sed -e 's@^/@@' -e 's@/$@@' >> "$BackupDir/log/$timestamp/created.log"

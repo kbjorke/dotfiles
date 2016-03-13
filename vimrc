@@ -64,7 +64,7 @@ let g:tex_flavor='latex'
 """ Filetype specific standard templates for new files:
 
 autocmd BufNewFile *.py silent! 0r  ~/.vim/templates/kb_standard.py
-autocmd BufNewFile *.tex TTemplate kb_standard
+" autocmd BufNewFile *.tex TTemplate kb_standard
 
 
 """ Settings for tagbar:
@@ -85,6 +85,10 @@ let g:miniBufExplModSelTarget = 1
 "set background=dark
 "colorscheme solarized
 
+""" Setting for pdflatex
+"let g:Tex_DefaultTargetFormat='pdf'
+"let g:Tex_MultipleCompileFormats='pdf,dvi'
+"let g:Tex_CompileRule_pdf = 'mkdir -p tmp; pdflatex -output-directory tmp -interaction=nonstopmode $*; cp tmp/*.pdf .'
 
 
 
