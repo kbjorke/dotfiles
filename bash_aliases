@@ -47,7 +47,7 @@ alias MScLog=open_newest_logfile
 alias vimIDE='vim -c "IDE"'
 
 # Alias that make you pipe to clipboard. Requires xclip.
-alias clipboard='xclip -sel clip'
+alias clipboard="tr -d '\n' | xclip -sel clip"
 
 
 # Functions used to resize terminal.

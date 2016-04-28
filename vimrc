@@ -34,6 +34,9 @@ set key=
 " Wrap text at end of editor:
 set wrap
 
+" Set paste for editor:
+"set paste
+
 " Command to turn of wrapping, sometime usefull to read column data
 command Now set nowrap
 
