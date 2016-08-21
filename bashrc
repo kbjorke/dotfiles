@@ -139,30 +139,28 @@ function log()
     log_dir=/home/kristian/Dokument/University_of_Oslo/log
 
     month_list=(ZERO January February March April May June July August September October November December)
+    weekday_list=(Sunday Monday Tuesday Wedensday Thursday Friday Saturday)
 
     year=$(date +%Y)
     month=$(date +%m)
     day=$(date +%d)
 
-    time=$(date +%H:%M:%S)
+    time=$(date +%H:%M)
+    time_zone=$(date +%Z)
 
     weekday=$(date +%w)
          
-    logfile=$log_dir/$year/${year}-$month/${year}-${month}-${day}_log.txt
+    logfile=$log_dir/$year/${year}-${month}_log.txt
 
     if [ ! -d "$log_dir/$year" ]; then
-         mkdir $log_dir/$year
+        mkdir $log_dir/$year
     fi
     
-    if [ ! -d "$log_dir/$year/${year}-$month" ]; then
-         mkdir $log_dir/$year/${year}-$month
-    fi
-    
-    if [ ! -d "$logfile" ]; then
+    if [ ! -f "$logfile" ]; then
 
-         touch $logfile 
+        touch $logfile 
 
-         header=$"### PhD position log ###
+        header=$"### PhD position log ###
 
 # By Kristian Bjørke
 # University of Oslo
@@ -170,8 +168,22 @@ function log()
 Year: ${year}
 Month: ${month_list[${month#0}]}"
 
-         echo "$header" > $logfile
+        echo "$header" > $logfile
     fi
+
+    if ! grep -q "${weekday_list[${weekday#0}]} $day ${month_list[${month#0}]}" $logfile;  then
+
+        day_header="$(printf "\n\n-------------- %9s %2s %-9s ------------------" ${weekday_list[${weekday#0}]} $day ${month_list[${month#0}]})"
+
+        echo "$day_header" >> $logfile
+    fi
+
+    entry="$(printf "\n%s %s:" $time $time_zone)"
+
+    echo "$entry" >> $logfile
+    echo "" >> $logfile
+
+    vim -c "startinsert" + $logfile
 }
 
 #function BackupMSc()
