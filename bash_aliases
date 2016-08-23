@@ -21,6 +21,9 @@ alias .3='cd ../../../'
 alias .4='cd ../../../../'
 alias .5='cd ../../../../../'
 
+# Run ROOT
+alias root='/opt/root/bin/root -l'
+
 # Alias for tree command with size of files and directories
 alias trees='tree -h --du'
 
