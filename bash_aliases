@@ -55,6 +55,9 @@ alias vimIDE='vim -c "IDE"'
 # Alias that make you pipe to clipboard. Requires xclip.
 alias clipboard="tr -d '\n' | xclip -sel clip"
 
+# Run MAD-X :
+alias madx="/opt/madx/./madx"
+
 
 # Functions used to resize terminal.
 function small_terminal()

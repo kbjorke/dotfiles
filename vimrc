@@ -14,8 +14,10 @@ filetype on
 
 " Canges tab-character to insert a given number of white spaces,
 " so that tab can be used as indent:
-set tabstop=4
-set shiftwidth=4
+" set tabstop=4
+" set shiftwidth=4
+set tabstop=3 
+set shiftwidth=3
 set expandtab
 
 " Settings to enable automated indentation:
