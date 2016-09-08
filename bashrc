@@ -134,10 +134,24 @@ ROOTSYS="/opt/root/"
 UiO="$HOME/Dokument/University_of_Oslo"
 MSc="$HOME/Dokument/University_of_Sussex/MScProject"
 
+function screen_bash()
+{
+   # Migh want to add possibility to add arguments to bash script
+   screen_name=$1 # Name of screen session
+   screen_script=$2 # Name of bash script to be run
+   screen -S $screen_name -dm bash $screen_script
+}
+
 function ps_screen()
 {
    screen_PID=$1 # First number for screen displayed by "screen -ls"
    ps u -p $(ps -el | grep $(ps -el | grep $screen_PID | grep bash | awk '{print $4}') | grep bash | awk '{print $4}')
+}
+
+function ps_screen_name()
+{
+   screen_name=$1 # Name of screen session
+   ps u -p $(ps -el | grep $(ps -el | grep $(screen -ls | grep $screen_name | awk '{print $1}' | sed -e "s/.$screen_name//") | grep bash | awk '{print $4}') | grep bash | awk '{print $4}')
 }
 
 function log()
