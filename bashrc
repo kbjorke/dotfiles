@@ -37,7 +37,7 @@ fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color) color_prompt=yes;;
+    xterm-color|*-256color) color_prompt=yes;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -117,22 +117,23 @@ fi
 eval `dircolors ~/.dir_colors/dircolors-solarized/dircolors.ansi-dark`
 
 
-# GnuPG setup for gpg-agent
-envfile="$HOME/.gnupg/gpg-agent.env"
-#if [[ -e "$envfile" ]] && kill -0 $(grep GPG_AGENT_INFO "$envfile" | cut -d: -f 2) 2>/dev/null; then
-#        eval "$(cat "$envfile")"
-#    else
-#            eval "$(gpg-agent --daemon --enable-ssh-support --write-env-file "$envfile")"
-#        fi
-#        export GPG_AGENT_INFO  # the env file does not contain the export statement
-#        export SSH_AUTH_SOCK   # enable gpg-agent for ssh
-
-# Sets the Mail Environment Variable
-MAIL=/var/spool/mail/kristian && export MAIL
+# # GnuPG setup for gpg-agent
+# envfile="$HOME/.gnupg/gpg-agent.env"
+# #if [[ -e "$envfile" ]] && kill -0 $(grep GPG_AGENT_INFO "$envfile" | cut -d: -f 2) 2>/dev/null; then
+# #        eval "$(cat "$envfile")"
+# #    else
+# #            eval "$(gpg-agent --daemon --enable-ssh-support --write-env-file "$envfile")"
+# #        fi
+# #        export GPG_AGENT_INFO  # the env file does not contain the export statement
+# #        export SSH_AUTH_SOCK   # enable gpg-agent for ssh
+# 
+# # Sets the Mail Environment Variable
+# MAIL=/var/spool/mail/kristian && export MAIL
 
 ROOTSYS="/opt/root/"
-UiO="$HOME/Dokument/University_of_Oslo"
-MSc="$HOME/Dokument/University_of_Sussex/MScProject"
+UiO="$HOME/Archive/Universetet\ i\ Oslo"
+US="$HOME/Archive/University\ of\ Sussex"
+PhD="$HOME/PhD"
 
 function screen_bash()
 {
@@ -156,7 +157,7 @@ function ps_screen_name()
 
 function log()
 {
-    log_dir=/home/kristian/Dokument/University_of_Oslo/log
+    log_dir=@HOME/PhD/log
 
     month_list=(ZERO January February March April May June July August September October November December)
     weekday_list=(Sunday Monday Tuesday Wedensday Thursday Friday Saturday)
@@ -206,136 +207,136 @@ Month: ${month_list[${month#0}]}"
     vim -c "startinsert" + $logfile -c 'normal zz'
 }
 
-function BackupPhD()
-{
-    mount_point=/dev/sda5
-    
-    if mount | grep "$mount_point" > /dev/null;
-    then
-        Storage=$(mount | grep $mount_point | grep -Po '(on\s)\K[^\s]*')
-        unmount=false
-    else
-        Storage=/media/kristian/storage
-        unmount=true
-    
-        sudo mkdir $Storage
-        sudo mount /dev/sda5 $Storage
-    fi
-    
-    DirToBackup=/home/kristian/Dokument/University_of_Oslo/
-    BackupDir="$Storage/Dokumenter/PhDBackup"
-    
-    
-    timestamp=$(date "+%Y-%m-%d_%H-%M-%S")
-    
-    sudo install --directory "$BackupDir/history/$timestamp"
-    sudo install --directory "$BackupDir/backup/"
-    sudo install --directory "$BackupDir/log/$timestamp"
-    
-    echo "Backup $timestamp"
-    
-    rsync --dry-run --itemize-changes --out-format="%i|%n|"  --recursive --update --delete --perms --owner --group --times --links --safe-links --super --one-file-system --devices $DirToBackup "$BackupDir/backup" | sed '/^ *$/d' > "$BackupDir/log/$timestamp/dryrun.log"
-    
-    grep "^.f" "$BackupDir/log/$timestamp/dryrun.log" >> "$BackupDir/log/$timestamp/onlyfiles.log"
-    grep "^.f+++++++++" "$BackupDir/log/$timestamp/onlyfiles.log" | awk -F '|' '{print $2 }' | sed 's@^/@@' >> "$BackupDir/log/$timestamp/created.log"
-    grep --invert-match "^.f+++++++++" "$BackupDir/log/$timestamp/onlyfiles.log" | grep --invert-match "^.f\.\.\.pog\.\.\." | grep --invert-match "^.f\.\.\.p\.\.\.\.\." | awk -F '|' '{print $2 }' | sed 's@^/@@' >> "$BackupDir/log/$timestamp/changed.log"
-    
-    grep "^\.d" "$BackupDir/log/$timestamp/dryrun.log" | grep --invert-match "^.d\.\.\.pog\.\.\." | grep --invert-match "^.f\.\.\.p\.\.\.\.\." | awk -F '|' '{print $2 }' | sed -e 's@^/@@' -e 's@^\./@@' -e 's@/$@@' >> "$BackupDir/log/$timestamp/changed.log"
-    grep "^cd" "$BackupDir/log/$timestamp/dryrun.log" | awk -F '|' '{print $2 }' | sed -e 's@^/@@' -e 's@/$@@' >> "$BackupDir/log/$timestamp/created.log"
-    
-    grep "^*deleting" "$BackupDir/log/$timestamp/dryrun.log" | awk -F '|' '{print $2 }' >> "$BackupDir/log/$timestamp/deleted.log"
-    
-    cat "$BackupDir/log/$timestamp/deleted.log" > /tmp/tmp.rsync.list
-    cat "$BackupDir/log/$timestamp/changed.log" >> /tmp/tmp.rsync.list
-    sort --output=/tmp/rsync.list --unique /tmp/tmp.rsync.list
-    
-    rsync --update --perms --owner --group --times --links --super --files-from=/tmp/rsync.list "$BackupDir/backup" "$BackupDir/history/$timestamp/"
-    
-    rsync --recursive --update --delete --perms --owner --group --times --links --safe-links --super --one-file-system --devices $DirToBackup "$BackupDir/backup"
-    
-    if mount | grep "$mount_point" > /dev/null;
-    then
-        if $unmount; then
-            sudo umount $Storage
-            sudo rm -r $Storage
-        fi
-    fi
-
-    echo "Main backup at: $mount_point/Dokumenter/PhDBackup"
-    
-    rsync --archive --update --verbose --human-readable --compress --rsh=ssh $DirToBackup ifi:pc/PhDBackup
-
-    echo "Secondary backup at: kribjork@login.ifi.uio.no:pc/PhDBackup"
-}
-
-function BackupPhD()
-{
-    mount_point=/dev/sda5
-    
-    if mount | grep "$mount_point" > /dev/null;
-    then
-        Storage=$(mount | grep $mount_point | grep -Po '(on\s)\K[^\s]*')
-        unmount=false
-    else
-        Storage=/media/kristian/storage
-        unmount=true
-    
-        sudo mkdir $Storage
-        sudo mount /dev/sda5 $Storage
-    fi
-    
-    DirToBackup=/home/kristian/Dokument/University_of_Oslo/
-    BackupDir="$Storage/Dokumenter/PhDBackup"
-    
-    
-    timestamp=$(date "+%Y-%m-%d_%H-%M-%S")
-    
-    sudo install --directory "$BackupDir/history/$timestamp"
-    sudo install --directory "$BackupDir/backup/"
-    sudo install --directory "$BackupDir/log/$timestamp"
-    
-    echo "Backup $timestamp"
-    
-    rsync --dry-run --itemize-changes --out-format="%i|%n|"  --recursive --update --delete --perms --owner --group --times --links --safe-links --super --one-file-system --devices $DirToBackup "$BackupDir/backup" | sed '/^ *$/d' > "$BackupDir/log/$timestamp/dryrun.log"
-    
-    grep "^.f" "$BackupDir/log/$timestamp/dryrun.log" >> "$BackupDir/log/$timestamp/onlyfiles.log"
-    grep "^.f+++++++++" "$BackupDir/log/$timestamp/onlyfiles.log" | awk -F '|' '{print $2 }' | sed 's@^/@@' >> "$BackupDir/log/$timestamp/created.log"
-    grep --invert-match "^.f+++++++++" "$BackupDir/log/$timestamp/onlyfiles.log" | grep --invert-match "^.f\.\.\.pog\.\.\." | grep --invert-match "^.f\.\.\.p\.\.\.\.\." | awk -F '|' '{print $2 }' | sed 's@^/@@' >> "$BackupDir/log/$timestamp/changed.log"
-    
-    grep "^\.d" "$BackupDir/log/$timestamp/dryrun.log" | grep --invert-match "^.d\.\.\.pog\.\.\." | grep --invert-match "^.f\.\.\.p\.\.\.\.\." | awk -F '|' '{print $2 }' | sed -e 's@^/@@' -e 's@^\./@@' -e 's@/$@@' >> "$BackupDir/log/$timestamp/changed.log"
-    grep "^cd" "$BackupDir/log/$timestamp/dryrun.log" | awk -F '|' '{print $2 }' | sed -e 's@^/@@' -e 's@/$@@' >> "$BackupDir/log/$timestamp/created.log"
-    
-    grep "^*deleting" "$BackupDir/log/$timestamp/dryrun.log" | awk -F '|' '{print $2 }' >> "$BackupDir/log/$timestamp/deleted.log"
-    
-    cat "$BackupDir/log/$timestamp/deleted.log" > /tmp/tmp.rsync.list
-    cat "$BackupDir/log/$timestamp/changed.log" >> /tmp/tmp.rsync.list
-    sort --output=/tmp/rsync.list --unique /tmp/tmp.rsync.list
-    
-    rsync --update --perms --owner --group --times --links --super --files-from=/tmp/rsync.list "$BackupDir/backup" "$BackupDir/history/$timestamp/"
-    
-    rsync --recursive --update --delete --perms --owner --group --times --links --safe-links --super --one-file-system --devices $DirToBackup "$BackupDir/backup"
-    
-    if mount | grep "$mount_point" > /dev/null;
-    then
-        if $unmount; then
-            sudo umount $Storage
-            sudo rm -r $Storage
-        fi
-    fi
-
-    echo "Main backup at: $mount_point/Dokumenter/PhDBackup"
-    
-    rsync --archive --update --verbose --human-readable --compress --rsh=ssh $DirToBackup ifi:pc/PhDBackup
-
-    echo "Secondary backup at: kribjork@login.ifi.uio.no:pc/PhDBackup"
-}
-
-function BackupWebpage()
-{
-    DirToBackup=ifi:www_docs/
-    BackupDir=/home/kristian/Dokument/University_of_Oslo/various/Backup-www_docs/
-    
-    rsync --archive --update --delete --verbose --human-readable --compress --rsh=ssh $DirToBackup $BackupDir
-
-    echo "Main backup at: $BackupDir"
-}
+#function BackupPhD()
+#{
+#    mount_point=/dev/sda5
+#    
+#    if mount | grep "$mount_point" > /dev/null;
+#    then
+#        Storage=$(mount | grep $mount_point | grep -Po '(on\s)\K[^\s]*')
+#        unmount=false
+#    else
+#        Storage=/media/kristian/storage
+#        unmount=true
+#    
+#        sudo mkdir $Storage
+#        sudo mount /dev/sda5 $Storage
+#    fi
+#    
+#    DirToBackup=/home/kristian/Dokument/University_of_Oslo/
+#    BackupDir="$Storage/Dokumenter/PhDBackup"
+#    
+#    
+#    timestamp=$(date "+%Y-%m-%d_%H-%M-%S")
+#    
+#    sudo install --directory "$BackupDir/history/$timestamp"
+#    sudo install --directory "$BackupDir/backup/"
+#    sudo install --directory "$BackupDir/log/$timestamp"
+#    
+#    echo "Backup $timestamp"
+#    
+#    rsync --dry-run --itemize-changes --out-format="%i|%n|"  --recursive --update --delete --perms --owner --group --times --links --safe-links --super --one-file-system --devices $DirToBackup "$BackupDir/backup" | sed '/^ *$/d' > "$BackupDir/log/$timestamp/dryrun.log"
+#    
+#    grep "^.f" "$BackupDir/log/$timestamp/dryrun.log" >> "$BackupDir/log/$timestamp/onlyfiles.log"
+#    grep "^.f+++++++++" "$BackupDir/log/$timestamp/onlyfiles.log" | awk -F '|' '{print $2 }' | sed 's@^/@@' >> "$BackupDir/log/$timestamp/created.log"
+#    grep --invert-match "^.f+++++++++" "$BackupDir/log/$timestamp/onlyfiles.log" | grep --invert-match "^.f\.\.\.pog\.\.\." | grep --invert-match "^.f\.\.\.p\.\.\.\.\." | awk -F '|' '{print $2 }' | sed 's@^/@@' >> "$BackupDir/log/$timestamp/changed.log"
+#    
+#    grep "^\.d" "$BackupDir/log/$timestamp/dryrun.log" | grep --invert-match "^.d\.\.\.pog\.\.\." | grep --invert-match "^.f\.\.\.p\.\.\.\.\." | awk -F '|' '{print $2 }' | sed -e 's@^/@@' -e 's@^\./@@' -e 's@/$@@' >> "$BackupDir/log/$timestamp/changed.log"
+#    grep "^cd" "$BackupDir/log/$timestamp/dryrun.log" | awk -F '|' '{print $2 }' | sed -e 's@^/@@' -e 's@/$@@' >> "$BackupDir/log/$timestamp/created.log"
+#    
+#    grep "^*deleting" "$BackupDir/log/$timestamp/dryrun.log" | awk -F '|' '{print $2 }' >> "$BackupDir/log/$timestamp/deleted.log"
+#    
+#    cat "$BackupDir/log/$timestamp/deleted.log" > /tmp/tmp.rsync.list
+#    cat "$BackupDir/log/$timestamp/changed.log" >> /tmp/tmp.rsync.list
+#    sort --output=/tmp/rsync.list --unique /tmp/tmp.rsync.list
+#    
+#    rsync --update --perms --owner --group --times --links --super --files-from=/tmp/rsync.list "$BackupDir/backup" "$BackupDir/history/$timestamp/"
+#    
+#    rsync --recursive --update --delete --perms --owner --group --times --links --safe-links --super --one-file-system --devices $DirToBackup "$BackupDir/backup"
+#    
+#    if mount | grep "$mount_point" > /dev/null;
+#    then
+#        if $unmount; then
+#            sudo umount $Storage
+#            sudo rm -r $Storage
+#        fi
+#    fi
+#
+#    echo "Main backup at: $mount_point/Dokumenter/PhDBackup"
+#    
+#    rsync --archive --update --verbose --human-readable --compress --rsh=ssh $DirToBackup ifi:pc/PhDBackup
+#
+#    echo "Secondary backup at: kribjork@login.ifi.uio.no:pc/PhDBackup"
+#}
+#
+#function BackupPhD()
+#{
+#    mount_point=/dev/sda5
+#    
+#    if mount | grep "$mount_point" > /dev/null;
+#    then
+#        Storage=$(mount | grep $mount_point | grep -Po '(on\s)\K[^\s]*')
+#        unmount=false
+#    else
+#        Storage=/media/kristian/storage
+#        unmount=true
+#    
+#        sudo mkdir $Storage
+#        sudo mount /dev/sda5 $Storage
+#    fi
+#    
+#    DirToBackup=/home/kristian/Dokument/University_of_Oslo/
+#    BackupDir="$Storage/Dokumenter/PhDBackup"
+#    
+#    
+#    timestamp=$(date "+%Y-%m-%d_%H-%M-%S")
+#    
+#    sudo install --directory "$BackupDir/history/$timestamp"
+#    sudo install --directory "$BackupDir/backup/"
+#    sudo install --directory "$BackupDir/log/$timestamp"
+#    
+#    echo "Backup $timestamp"
+#    
+#    rsync --dry-run --itemize-changes --out-format="%i|%n|"  --recursive --update --delete --perms --owner --group --times --links --safe-links --super --one-file-system --devices $DirToBackup "$BackupDir/backup" | sed '/^ *$/d' > "$BackupDir/log/$timestamp/dryrun.log"
+#    
+#    grep "^.f" "$BackupDir/log/$timestamp/dryrun.log" >> "$BackupDir/log/$timestamp/onlyfiles.log"
+#    grep "^.f+++++++++" "$BackupDir/log/$timestamp/onlyfiles.log" | awk -F '|' '{print $2 }' | sed 's@^/@@' >> "$BackupDir/log/$timestamp/created.log"
+#    grep --invert-match "^.f+++++++++" "$BackupDir/log/$timestamp/onlyfiles.log" | grep --invert-match "^.f\.\.\.pog\.\.\." | grep --invert-match "^.f\.\.\.p\.\.\.\.\." | awk -F '|' '{print $2 }' | sed 's@^/@@' >> "$BackupDir/log/$timestamp/changed.log"
+#    
+#    grep "^\.d" "$BackupDir/log/$timestamp/dryrun.log" | grep --invert-match "^.d\.\.\.pog\.\.\." | grep --invert-match "^.f\.\.\.p\.\.\.\.\." | awk -F '|' '{print $2 }' | sed -e 's@^/@@' -e 's@^\./@@' -e 's@/$@@' >> "$BackupDir/log/$timestamp/changed.log"
+#    grep "^cd" "$BackupDir/log/$timestamp/dryrun.log" | awk -F '|' '{print $2 }' | sed -e 's@^/@@' -e 's@/$@@' >> "$BackupDir/log/$timestamp/created.log"
+#    
+#    grep "^*deleting" "$BackupDir/log/$timestamp/dryrun.log" | awk -F '|' '{print $2 }' >> "$BackupDir/log/$timestamp/deleted.log"
+#    
+#    cat "$BackupDir/log/$timestamp/deleted.log" > /tmp/tmp.rsync.list
+#    cat "$BackupDir/log/$timestamp/changed.log" >> /tmp/tmp.rsync.list
+#    sort --output=/tmp/rsync.list --unique /tmp/tmp.rsync.list
+#    
+#    rsync --update --perms --owner --group --times --links --super --files-from=/tmp/rsync.list "$BackupDir/backup" "$BackupDir/history/$timestamp/"
+#    
+#    rsync --recursive --update --delete --perms --owner --group --times --links --safe-links --super --one-file-system --devices $DirToBackup "$BackupDir/backup"
+#    
+#    if mount | grep "$mount_point" > /dev/null;
+#    then
+#        if $unmount; then
+#            sudo umount $Storage
+#            sudo rm -r $Storage
+#        fi
+#    fi
+#
+#    echo "Main backup at: $mount_point/Dokumenter/PhDBackup"
+#    
+#    rsync --archive --update --verbose --human-readable --compress --rsh=ssh $DirToBackup ifi:pc/PhDBackup
+#
+#    echo "Secondary backup at: kribjork@login.ifi.uio.no:pc/PhDBackup"
+#}
+#
+#function BackupWebpage()
+#{
+#    DirToBackup=ifi:www_docs/
+#    BackupDir=/home/kristian/Dokument/University_of_Oslo/various/Backup-www_docs/
+#    
+#    rsync --archive --update --delete --verbose --human-readable --compress --rsh=ssh $DirToBackup $BackupDir
+#
+#    echo "Main backup at: $BackupDir"
+#}

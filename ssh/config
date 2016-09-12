@@ -1,3 +1,8 @@
+Host uio
+    HostName login.uio.no
+    User kribjork
+    ForwardX11 yes
+
 Host ifi 
     HostName login.ifi.uio.no
     User kribjork
@@ -6,19 +11,4 @@ Host ifi
 Host ulrik
     HostName ulrik.uio.no
     User kribjork
-    ForwardX11 yes
-
-Host feynman
-    HostName feynman.hpc.susx.ac.uk
-    User kb339
-    ForwardX11 yes
-
-Host apollo
-    Hostname apollo.hpc.susx.ac.uk
-    User kb339
-    ForwardX11 yes
-
-Host sussex
-    Hostname ssh.phys.susx.ac.uk
-    User kb339
     ForwardX11 yes

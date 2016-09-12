@@ -28,26 +28,15 @@ alias root='/opt/root/bin/root -l'
 alias trees='tree -h --du'
 
 # Shortcuts to get to .basrc and .vimrc files and dotfiles
-alias bashrc='vim -c "IDE" /home/kristian/dotfiles/bashrc'
+alias bashrc='vim /home/kristian/dotfiles/bashrc'
 alias bash_aliases='vim /home/kristian/dotfiles/bash_aliases'
-alias vimrc='vim -c "IDE" /home/kristian/dotfiles/vimrc'
+alias vimrc='vim /home/kristian/dotfiles/vimrc'
 
 # Shortcut to get to the dotfiles folder
-alias gotodotfiles='cd /home/kristian/dotfiles/'
+alias gotodotfiles='cd $HOME/dotfiles/'
 
-# Shortcut to get to the MSc project folder
-alias gotoMSc='cd /home/kristian/Dokument/University_of_Sussex/MScProject'
-
-# Shortcut to get to the UiO folder
-alias gotoUiO='cd /home/kristian/Dokument/University_of_Oslo'
-
-# Shortcut to open MSc log
-function open_newest_logfile()
-{
-   newest_logfile=$(ls /home/kristian/Dokument/University_of_Sussex/MScProject/MScLog_kbjorke/*-MScLog_kbjorke.txt | tail -n 1)
-   vim -c "normal G $" "$newest_logfile"
-}
-alias MScLog=open_newest_logfile
+# Shortcut to get to the PhD folder
+alias gotoPhD='cd $HOME/PhD'
 
 # Alias to open vim in IDE environment
 alias vimIDE='vim -c "IDE"'

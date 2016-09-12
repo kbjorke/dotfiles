@@ -19,6 +19,7 @@ dir=~/dotfiles                    # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
 # list of files/folders to symlink in homedir:
 files="profile bashrc bash_aliases vim vimrc ssh dir_colors" 
+#files="profile bashrc bash_aliases vim vimrc ssh" 
 ##########
 
 # create dotfiles_old in homedir
