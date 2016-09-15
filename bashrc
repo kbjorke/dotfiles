@@ -157,7 +157,7 @@ function ps_screen_name()
 
 function log()
 {
-    log_dir=@HOME/PhD/log
+    log_dir=$HOME/PhD/log
 
     month_list=(ZERO January February March April May June July August September October November December)
     weekday_list=(Sunday Monday Tuesday Wedensday Thursday Friday Saturday)

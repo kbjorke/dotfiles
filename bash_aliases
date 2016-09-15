@@ -45,7 +45,10 @@ alias vimIDE='vim -c "IDE"'
 alias clipboard="tr -d '\n' | xclip -sel clip"
 
 # Run MAD-X :
-alias madx="/opt/madx/./madx"
+alias madx='/opt/madx/./madx'
+
+# Remote desktop to UiO Windows
+alias uio-xfreerdp='xfreerdp --plugin cliprdr -u kribjork -d uio win.uio.no'
 
 
 # Functions used to resize terminal.
