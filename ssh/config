@@ -12,3 +12,8 @@ Host ulrik
     HostName ulrik.uio.no
     User kribjork
     ForwardX11 yes
+
+Host lxplus
+    HostName lxplus.cern.ch
+    User krbjoerk
+    ForwardX11 yes

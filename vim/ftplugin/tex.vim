@@ -38,3 +38,8 @@ let g:Tex_CompileRule_dvi = 'latex --interaction=nonstopmode $*'
 let g:Tex_CompileRule_ps = 'dvips $*.dvi'
 let g:Tex_CompileRule_pdf = 'ps2pdf $*.ps $*.pdf'
 
+" Specific command to save and compile latex corresponding to a compiletex.sh
+" script that I regulary uses when writing latex document. Should refine
+" this to some better way of doing it (perhaps incorporating the whole bash 
+" script into the command):
+map <c-p> :!bash compiletex.sh <Enter> <Enter>

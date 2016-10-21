@@ -135,6 +135,10 @@ UiO="$HOME/Archive/Universetet\ i\ Oslo"
 US="$HOME/Archive/University\ of\ Sussex"
 PhD="$HOME/PhD"
 
+# Allows to exclude when calling multiple files/folders
+# Use: rm -rf !(one|two|three) [remove command exclude one, two and three]
+shopt -s extglob
+
 function screen_bash()
 {
    # Migh want to add possibility to add arguments to bash script
@@ -153,6 +157,45 @@ function ps_screen_name()
 {
    screen_name=$1 # Name of screen session
    ps u -p $(ps -el | grep $(ps -el | grep $(screen -ls | grep $screen_name | awk '{print $1}' | sed -e "s/.$screen_name//") | grep bash | awk '{print $4}') | grep bash | awk '{print $4}')
+}
+
+function NewTexReport()
+{
+template_path="/home/kristian/PhD/various/tex_report_template"
+
+title=$1
+
+echo "New LaTeX report kbjorke-${title}.tex created in /report folder"
+
+path="$(pwd)/report"
+
+mkdir ${path}
+
+# Make report folder structure
+mkdir ${path}/aux
+mkdir ${path}/img
+mkdir ${path}/ref
+mkdir ${path}/tex
+mkdir ${path}/var
+mkdir ${path}/lst
+
+# Copy template and scripts into report folder
+cp ${template_path}/kbjorke-TITLE.tex ${path}/kbjorke-${title}.tex
+cp ${template_path}/bib_kbjorke_TITLE.bib ${path}/bib_kbjorke_${title}.bib
+cp ${template_path}/compiletex.sh ${path}/compiletex.sh
+cp ${template_path}/spellcheck.sh ${path}/spellcheck.sh
+cp ${template_path}/updatebib.sh ${path}/updatebib.sh
+cp ${template_path}/wordcount.sh ${path}/wordcount.sh
+
+# Copy example image
+cp ${template_path}/img/WIMP_detection.eps ${path}/img/WIMP_detection.eps
+
+# Change specifics in scripts
+sed -i "s:#TITLE#:${title}:" ${path}/kbjorke-${title}.tex
+sed -i "s:PATH:${path}/:" ${path}/compiletex.sh
+sed -i "s/FILENAME/kbjorke-${title}/" ${path}/compiletex.sh
+sed -i "s/FILENAME/kbjorke-${title}/" ${path}/updatebib.sh
+sed -i "s/FILENAME/kbjorke-${title}/" ${path}/wordcount.sh
 }
 
 function log()
@@ -207,136 +250,28 @@ Month: ${month_list[${month#0}]}"
     vim -c "startinsert" + $logfile -c 'normal zz'
 }
 
-#function BackupPhD()
-#{
-#    mount_point=/dev/sda5
-#    
-#    if mount | grep "$mount_point" > /dev/null;
-#    then
-#        Storage=$(mount | grep $mount_point | grep -Po '(on\s)\K[^\s]*')
-#        unmount=false
-#    else
-#        Storage=/media/kristian/storage
-#        unmount=true
-#    
-#        sudo mkdir $Storage
-#        sudo mount /dev/sda5 $Storage
-#    fi
-#    
-#    DirToBackup=/home/kristian/Dokument/University_of_Oslo/
-#    BackupDir="$Storage/Dokumenter/PhDBackup"
-#    
-#    
-#    timestamp=$(date "+%Y-%m-%d_%H-%M-%S")
-#    
-#    sudo install --directory "$BackupDir/history/$timestamp"
-#    sudo install --directory "$BackupDir/backup/"
-#    sudo install --directory "$BackupDir/log/$timestamp"
-#    
-#    echo "Backup $timestamp"
-#    
-#    rsync --dry-run --itemize-changes --out-format="%i|%n|"  --recursive --update --delete --perms --owner --group --times --links --safe-links --super --one-file-system --devices $DirToBackup "$BackupDir/backup" | sed '/^ *$/d' > "$BackupDir/log/$timestamp/dryrun.log"
-#    
-#    grep "^.f" "$BackupDir/log/$timestamp/dryrun.log" >> "$BackupDir/log/$timestamp/onlyfiles.log"
-#    grep "^.f+++++++++" "$BackupDir/log/$timestamp/onlyfiles.log" | awk -F '|' '{print $2 }' | sed 's@^/@@' >> "$BackupDir/log/$timestamp/created.log"
-#    grep --invert-match "^.f+++++++++" "$BackupDir/log/$timestamp/onlyfiles.log" | grep --invert-match "^.f\.\.\.pog\.\.\." | grep --invert-match "^.f\.\.\.p\.\.\.\.\." | awk -F '|' '{print $2 }' | sed 's@^/@@' >> "$BackupDir/log/$timestamp/changed.log"
-#    
-#    grep "^\.d" "$BackupDir/log/$timestamp/dryrun.log" | grep --invert-match "^.d\.\.\.pog\.\.\." | grep --invert-match "^.f\.\.\.p\.\.\.\.\." | awk -F '|' '{print $2 }' | sed -e 's@^/@@' -e 's@^\./@@' -e 's@/$@@' >> "$BackupDir/log/$timestamp/changed.log"
-#    grep "^cd" "$BackupDir/log/$timestamp/dryrun.log" | awk -F '|' '{print $2 }' | sed -e 's@^/@@' -e 's@/$@@' >> "$BackupDir/log/$timestamp/created.log"
-#    
-#    grep "^*deleting" "$BackupDir/log/$timestamp/dryrun.log" | awk -F '|' '{print $2 }' >> "$BackupDir/log/$timestamp/deleted.log"
-#    
-#    cat "$BackupDir/log/$timestamp/deleted.log" > /tmp/tmp.rsync.list
-#    cat "$BackupDir/log/$timestamp/changed.log" >> /tmp/tmp.rsync.list
-#    sort --output=/tmp/rsync.list --unique /tmp/tmp.rsync.list
-#    
-#    rsync --update --perms --owner --group --times --links --super --files-from=/tmp/rsync.list "$BackupDir/backup" "$BackupDir/history/$timestamp/"
-#    
-#    rsync --recursive --update --delete --perms --owner --group --times --links --safe-links --super --one-file-system --devices $DirToBackup "$BackupDir/backup"
-#    
-#    if mount | grep "$mount_point" > /dev/null;
-#    then
-#        if $unmount; then
-#            sudo umount $Storage
-#            sudo rm -r $Storage
-#        fi
-#    fi
-#
-#    echo "Main backup at: $mount_point/Dokumenter/PhDBackup"
-#    
-#    rsync --archive --update --verbose --human-readable --compress --rsh=ssh $DirToBackup ifi:pc/PhDBackup
-#
-#    echo "Secondary backup at: kribjork@login.ifi.uio.no:pc/PhDBackup"
-#}
-#
-#function BackupPhD()
-#{
-#    mount_point=/dev/sda5
-#    
-#    if mount | grep "$mount_point" > /dev/null;
-#    then
-#        Storage=$(mount | grep $mount_point | grep -Po '(on\s)\K[^\s]*')
-#        unmount=false
-#    else
-#        Storage=/media/kristian/storage
-#        unmount=true
-#    
-#        sudo mkdir $Storage
-#        sudo mount /dev/sda5 $Storage
-#    fi
-#    
-#    DirToBackup=/home/kristian/Dokument/University_of_Oslo/
-#    BackupDir="$Storage/Dokumenter/PhDBackup"
-#    
-#    
-#    timestamp=$(date "+%Y-%m-%d_%H-%M-%S")
-#    
-#    sudo install --directory "$BackupDir/history/$timestamp"
-#    sudo install --directory "$BackupDir/backup/"
-#    sudo install --directory "$BackupDir/log/$timestamp"
-#    
-#    echo "Backup $timestamp"
-#    
-#    rsync --dry-run --itemize-changes --out-format="%i|%n|"  --recursive --update --delete --perms --owner --group --times --links --safe-links --super --one-file-system --devices $DirToBackup "$BackupDir/backup" | sed '/^ *$/d' > "$BackupDir/log/$timestamp/dryrun.log"
-#    
-#    grep "^.f" "$BackupDir/log/$timestamp/dryrun.log" >> "$BackupDir/log/$timestamp/onlyfiles.log"
-#    grep "^.f+++++++++" "$BackupDir/log/$timestamp/onlyfiles.log" | awk -F '|' '{print $2 }' | sed 's@^/@@' >> "$BackupDir/log/$timestamp/created.log"
-#    grep --invert-match "^.f+++++++++" "$BackupDir/log/$timestamp/onlyfiles.log" | grep --invert-match "^.f\.\.\.pog\.\.\." | grep --invert-match "^.f\.\.\.p\.\.\.\.\." | awk -F '|' '{print $2 }' | sed 's@^/@@' >> "$BackupDir/log/$timestamp/changed.log"
-#    
-#    grep "^\.d" "$BackupDir/log/$timestamp/dryrun.log" | grep --invert-match "^.d\.\.\.pog\.\.\." | grep --invert-match "^.f\.\.\.p\.\.\.\.\." | awk -F '|' '{print $2 }' | sed -e 's@^/@@' -e 's@^\./@@' -e 's@/$@@' >> "$BackupDir/log/$timestamp/changed.log"
-#    grep "^cd" "$BackupDir/log/$timestamp/dryrun.log" | awk -F '|' '{print $2 }' | sed -e 's@^/@@' -e 's@/$@@' >> "$BackupDir/log/$timestamp/created.log"
-#    
-#    grep "^*deleting" "$BackupDir/log/$timestamp/dryrun.log" | awk -F '|' '{print $2 }' >> "$BackupDir/log/$timestamp/deleted.log"
-#    
-#    cat "$BackupDir/log/$timestamp/deleted.log" > /tmp/tmp.rsync.list
-#    cat "$BackupDir/log/$timestamp/changed.log" >> /tmp/tmp.rsync.list
-#    sort --output=/tmp/rsync.list --unique /tmp/tmp.rsync.list
-#    
-#    rsync --update --perms --owner --group --times --links --super --files-from=/tmp/rsync.list "$BackupDir/backup" "$BackupDir/history/$timestamp/"
-#    
-#    rsync --recursive --update --delete --perms --owner --group --times --links --safe-links --super --one-file-system --devices $DirToBackup "$BackupDir/backup"
-#    
-#    if mount | grep "$mount_point" > /dev/null;
-#    then
-#        if $unmount; then
-#            sudo umount $Storage
-#            sudo rm -r $Storage
-#        fi
-#    fi
-#
-#    echo "Main backup at: $mount_point/Dokumenter/PhDBackup"
-#    
-#    rsync --archive --update --verbose --human-readable --compress --rsh=ssh $DirToBackup ifi:pc/PhDBackup
-#
-#    echo "Secondary backup at: kribjork@login.ifi.uio.no:pc/PhDBackup"
-#}
-#
-#function BackupWebpage()
-#{
-#    DirToBackup=ifi:www_docs/
-#    BackupDir=/home/kristian/Dokument/University_of_Oslo/various/Backup-www_docs/
-#    
-#    rsync --archive --update --delete --verbose --human-readable --compress --rsh=ssh $DirToBackup $BackupDir
-#
-#    echo "Main backup at: $BackupDir"
-#}
+function BackupPhD()
+{
+    Storage=/media/kristian/kbjorke-uio-enc    
+
+    DirToBackup=/home/kristian/PhD/
+    BackupDir="$Storage/PhDBackup"
+    
+    rsync --recursive --update --delete --perms --owner --group --times --links --safe-links --super --one-file-system --devices $DirToBackup $BackupDir
+
+    echo "Main backup at: $Storage/PhDBackup"
+    
+    rsync --archive --update --verbose --human-readable --compress --rsh=ssh $DirToBackup ifi:PhDBackup
+
+    echo "Secondary backup at: kribjork@login.ifi.uio.no:PhDBackup"
+}
+
+function BackupWebpage()
+{
+    DirToBackup=ifi:www_docs/
+    BackupDir=/home/kristian/PhD/various/Backup-www_docs/
+    
+    rsync --archive --update --delete --verbose --human-readable --compress --rsh=ssh $DirToBackup $BackupDir
+
+    echo "Main backup at: $BackupDir"
+}

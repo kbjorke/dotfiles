@@ -24,6 +24,12 @@ alias .5='cd ../../../../../'
 # Run ROOT
 alias root='/opt/root/bin/root -l'
 
+# Run Atlantis
+alias atlantis='java -jar /opt/atlantis/AtlantisJava-09-16-05-23/atlantis.jar'
+
+# Run Vidyo
+alias vidyo='/opt/vidyo/VidyoDesktop/VidyoDesktop'
+
 # Alias for tree command with size of files and directories
 alias trees='tree -h --du'
 
@@ -49,6 +55,9 @@ alias madx='/opt/madx/./madx'
 
 # Remote desktop to UiO Windows
 alias uio-xfreerdp='xfreerdp --plugin cliprdr -u kribjork -d uio win.uio.no'
+
+# Run elma2
+alias elma2='cd /opt/elma2/ && ./elma2 && cd ~-'
 
 
 # Functions used to resize terminal.
