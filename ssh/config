@@ -1,3 +1,13 @@
+Host hyper
+    HostName hyper.uio.no
+    User kribjork
+    ForwardX11 yes
+
+Host lxplus
+    HostName lxplus.cern.ch
+    User krbjoerk
+    ForwardX11 yes
+
 Host uio
     HostName login.uio.no
     User kribjork
@@ -11,9 +21,4 @@ Host ifi
 Host ulrik
     HostName ulrik.uio.no
     User kribjork
-    ForwardX11 yes
-
-Host lxplus
-    HostName lxplus.cern.ch
-    User krbjoerk
     ForwardX11 yes

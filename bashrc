@@ -250,28 +250,42 @@ Month: ${month_list[${month#0}]}"
     vim -c "startinsert" + $logfile -c 'normal zz'
 }
 
+function SyncPhD()
+{
+   unison -auto -batch $HOME/PhD ssh://kribjork@hyper.uio.no/PhD
+}
+
+function SyncPhD_MOD()
+{
+   unison $HOME/PhD ssh://kribjork@hyper.uio.no/PhD
+}
+
 function BackupPhD()
 {
-    Storage=/media/kristian/kbjorke-uio-enc    
+   SyncPhD
+   echo "PhD syncronized with hyper.uio.no"
 
-    DirToBackup=/home/kristian/PhD/
-    BackupDir="$Storage/PhDBackup"
-    
-    rsync --recursive --update --delete --perms --owner --group --times --links --safe-links --super --one-file-system --devices $DirToBackup $BackupDir
+   Storage=/media/kristian/kbjorke-uio-enc    
 
-    echo "Main backup at: $Storage/PhDBackup"
-    
-    rsync --archive --update --verbose --human-readable --compress --rsh=ssh $DirToBackup ifi:PhDBackup
+   DirToBackup=/home/kristian/PhD/
+   BackupDir="$Storage/PhDBackup"
+   
+   rsync --recursive --update --delete --perms --owner --group --times --links --safe-links --super --one-file-system --devices $DirToBackup $BackupDir
 
-    echo "Secondary backup at: kribjork@login.ifi.uio.no:PhDBackup"
+   echo "Main backup at: $Storage/PhDBackup"
+   
+   rsync --archive --update --verbose --human-readable --compress --rsh=ssh $DirToBackup hyper:Backup_PhD
+
+   echo "Secondary backup at: kribjork@hyper.uio.no:Backup_PhD"
 }
+
 
 function BackupWebpage()
 {
-    DirToBackup=ifi:www_docs/
-    BackupDir=/home/kristian/PhD/various/Backup-www_docs/
-    
-    rsync --archive --update --delete --verbose --human-readable --compress --rsh=ssh $DirToBackup $BackupDir
+   DirToBackup=hyper:www_docs/
+   BackupDir=/home/kristian/PhD/various/Backup-www_docs/
+   
+   rsync --archive --update --delete --verbose --human-readable --compress --rsh=ssh $DirToBackup $BackupDir
 
-    echo "Main backup at: $BackupDir"
+   echo "Main backup at: $BackupDir"
 }

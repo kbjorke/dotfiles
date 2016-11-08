@@ -59,6 +59,8 @@ alias uio-xfreerdp='xfreerdp --plugin cliprdr -u kribjork -d uio win.uio.no'
 # Run elma2
 alias elma2='cd /opt/elma2/ && ./elma2 && cd ~-'
 
+# Run unison
+alias unison='$HOME/unison/./unison-2.40.61-linux-x86_64-text-static'
 
 # Functions used to resize terminal.
 function small_terminal()
