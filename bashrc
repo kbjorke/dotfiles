@@ -269,14 +269,14 @@ function BackupPhD()
 
    DirToBackup=/home/kristian/PhD/
    BackupDir="$Storage/PhDBackup"
+
+   ssh hyper 'bash /scratch/phd_backup.sh'
+
+   echo "Main backup at: kribjork@hyper.uio.no:/scratch/Backup_PhD"
    
    rsync --recursive --update --delete --perms --owner --group --times --links --safe-links --super --one-file-system --devices $DirToBackup $BackupDir
 
-   echo "Main backup at: $Storage/PhDBackup"
-   
-   rsync --archive --update --verbose --human-readable --compress --rsh=ssh $DirToBackup hyper:/scratch/Backup_PhD
-
-   echo "Secondary backup at: kribjork@hyper.uio.no:/scratch/Backup_PhD"
+   echo "Secondary backup at: $Storage/PhDBackup"
 }
 
 
