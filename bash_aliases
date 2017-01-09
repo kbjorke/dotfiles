@@ -53,6 +53,9 @@ alias clipboard="tr -d '\n' | xclip -sel clip"
 # Run MAD-X :
 alias madx='/opt/madx/./madx'
 
+# Run MadGraph5 :
+alias mg5='/opt/mg5/bin/./mg5_aMC'
+
 # Remote desktop to UiO Windows
 alias uio-xfreerdp='xfreerdp --plugin cliprdr -u kribjork -d uio win.uio.no'
 

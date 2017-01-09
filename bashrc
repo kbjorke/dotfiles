@@ -274,9 +274,9 @@ function BackupPhD()
 
    echo "Main backup at: $Storage/PhDBackup"
    
-   rsync --archive --update --verbose --human-readable --compress --rsh=ssh $DirToBackup hyper:Backup_PhD
+   rsync --archive --update --verbose --human-readable --compress --rsh=ssh $DirToBackup hyper:/scratch/Backup_PhD
 
-   echo "Secondary backup at: kribjork@hyper.uio.no:Backup_PhD"
+   echo "Secondary backup at: kribjork@hyper.uio.no:/scratch/Backup_PhD"
 }
 
 
