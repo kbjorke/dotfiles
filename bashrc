@@ -203,7 +203,7 @@ function log()
     log_dir=$HOME/PhD/log
 
     month_list=(ZERO January February March April May June July August September October November December)
-    weekday_list=(Sunday Monday Tuesday Wedensday Thursday Friday Saturday)
+    weekday_list=(Sunday Monday Tuesday Wednesday Thursday Friday Saturday)
 
     year=$(date +%Y)
     month=$(date +%m)
