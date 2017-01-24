@@ -198,6 +198,17 @@ sed -i "s/FILENAME/kbjorke-${title}/" ${path}/updatebib.sh
 sed -i "s/FILENAME/kbjorke-${title}/" ${path}/wordcount.sh
 }
 
+function readlog()
+{
+    log_dir=$HOME/PhD/log
+
+    year=$(ls $log_dir | sort -nr | head -n 1)
+   
+    newest_file=$(ls $log_dir/$year | sort -nr | head -n 1)
+
+    less +G $log_dir/$year/$newest_file 
+}
+
 function log()
 {
     log_dir=$HOME/PhD/log
