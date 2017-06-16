@@ -22,3 +22,8 @@ Host ulrik
     HostName ulrik.uio.no
     User kribjork
     ForwardX11 yes
+
+Host abel
+    HostName abel.uio.no
+    User kribjork
+    ForwardX11 yes

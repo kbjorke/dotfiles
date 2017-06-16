@@ -44,11 +44,18 @@ alias gotodotfiles='cd $HOME/dotfiles/'
 # Shortcut to get to the PhD folder
 alias gotoPhD='cd $HOME/PhD'
 
+# Shortcut to get to the WorkSpace folder
+alias gotoWS='cd $HOME/WorkSpace'
+
 # Alias to open vim in IDE environment
 alias vimIDE='vim -c "IDE"'
 
 # Alias that make you pipe to clipboard. Requires xclip.
 alias clipboard="tr -d '\n' | xclip -sel clip"
+alias pwdc="pwd | clipboard" # Current directory to clipboard
+
+# Run MATLAB :
+alias matlab='/opt/matlab/bin/./matlab'
 
 # Run MAD-X :
 alias madx='/opt/madx/./madx'

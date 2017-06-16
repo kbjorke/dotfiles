@@ -42,6 +42,9 @@ set wrap
 " Command to turn of wrapping, sometime usefull to read column data
 command Now set nowrap
 
+" Command to turn on pasting
+command Sp set paste
+
 
 """ Settings for vim Latex-Suite:
 

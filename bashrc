@@ -134,6 +134,13 @@ ROOTSYS="/opt/root/"
 UiO="$HOME/Archive/Universetet\ i\ Oslo"
 US="$HOME/Archive/University\ of\ Sussex"
 PhD="$HOME/PhD"
+WS="$HOME/WorkSpace"
+
+# For LHAPDF to find python and ROOT:
+export PATH=$WS/mg_monoH/LHAPDF-install/bin:$PATH
+export LD_LIBRARY_PATH=$WS/mg_monoH/LHAPDF-install/lib:$LD_LIBRARY_PATH
+export PYTHONPATH=$WS/mg_monoH/LHAPDF-install/lib/python2.7/site-packages:$PYTHONPATH
+export PATH=$PATH:$ROOTSYS:$ROOTSYS/bin
 
 # Allows to exclude when calling multiple files/folders
 # Use: rm -rf !(one|two|three) [remove command exclude one, two and three]
@@ -266,6 +273,11 @@ function SyncPhD()
    unison -auto -batch $HOME/PhD ssh://kribjork@hyper.uio.no/PhD
 }
 
+function SyncPhD_home()
+{
+   unison -auto -batch $HOME/PhD ssh://kribjork@login.ifi.uio.no/PhD
+}
+
 function SyncPhD_MOD()
 {
    unison $HOME/PhD ssh://kribjork@hyper.uio.no/PhD
@@ -288,6 +300,45 @@ function BackupPhD()
    rsync --recursive --update --delete --perms --owner --group --times --links --safe-links --super --one-file-system --devices $DirToBackup $BackupDir
 
    echo "Secondary backup at: $Storage/PhDBackup"
+}
+
+function BackupPhD_home()
+{
+   SyncPhD_home
+   echo "PhD syncronized with hyper.uio.no"
+
+   Storage=/media/kristian/kbjorke-uio-enc    
+
+   DirToBackup=/home/kristian/PhD/
+   BackupDir="$Storage/PhDBackup"
+
+   ssh -t ifi ssh hyper 'bash /scratch/phd_backup.sh'
+
+   echo "Main backup at: kribjork@hyper.uio.no:/scratch/Backup_PhD"
+   
+   rsync --recursive --update --delete --perms --owner --group --times --links --safe-links --super --one-file-system --devices $DirToBackup $BackupDir
+
+   echo "Secondary backup at: $Storage/PhDBackup"
+}
+
+function BackupWS()
+{
+
+DirToBackup="/home/kristian/WorkSpace"
+BackupDir="/scratch2/Backup_laptopWS"
+   
+unison -auto -batch $DirToBackup ssh://kribjork@hyper.uio.no/$BackupDir
+
+}
+
+function BackuplxplusWS()
+{
+   ssh hyper 'bash /scratch/lxplusWS_backup.sh'
+}
+
+function BackuplxplusWS_home()
+{
+   ssh -t ifi ssh hyper 'bash /scratch/lxplusWS_backup.sh'
 }
 
 
