@@ -331,6 +331,16 @@ unison -auto -batch $DirToBackup ssh://kribjork@hyper.uio.no/$BackupDir
 
 }
 
+function BackupHyperWS()
+{
+   ssh hyper 'bash /scratch/hyperWS_backup.sh'
+}
+
+function BackupHyperWS_home()
+{
+   ssh -t ifi ssh hyper 'bash /scratch/hyperWS_backup.sh'
+}
+
 function BackuplxplusWS()
 {
    ssh hyper 'bash /scratch/lxplusWS_backup.sh'
