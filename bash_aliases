@@ -24,6 +24,15 @@ alias .5='cd ../../../../../'
 # Run ROOT
 alias root='/opt/root/bin/root -l'
 
+# Run LAMMPS
+alias lammps='lammps-daily'
+
+# Run ATOMIFY
+alias atomify='/opt/atomify/./atomify'
+
+# Run pizza.py
+alias pizza='/home/kristian/WorkSpace/lammps/pizza-9Oct15/src/pizza.py'
+
 # Run Atlantis
 alias atlantis='java -jar /opt/atlantis/AtlantisJava-09-16-05-23/atlantis.jar'
 
@@ -47,6 +56,9 @@ alias gotoPhD='cd $HOME/PhD'
 # Shortcut to get to the WorkSpace folder
 alias gotoWS='cd $HOME/WorkSpace'
 
+# Open new fullscreen terminal suitable to write code
+alias work='gnome-terminal.real --profile=CodeWritting --working-directory=$WS --full-screen'
+
 # Alias to open vim in IDE environment
 alias vimIDE='vim -c "IDE"'
 
@@ -57,11 +69,14 @@ alias pwdc="pwd | clipboard" # Current directory to clipboard
 # Run MATLAB :
 alias matlab='/opt/matlab/bin/./matlab'
 
+# Run VMD :
+alias vmd='/opt/vmd/bin/./vmd'
+
 # Run MAD-X :
 alias madx='/opt/madx/./madx'
 
 # Run MadGraph5 :
-alias mg5='/opt/mg5/bin/./mg5_aMC'
+alias mg5='/home/kristian/WorkSpace/madgraph/MG5_aMC_v2_6_0/bin/./mg5_aMC'
 
 # Remote desktop to UiO Windows
 alias uio-xfreerdp='xfreerdp --plugin cliprdr -u kribjork -d uio win.uio.no'

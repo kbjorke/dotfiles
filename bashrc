@@ -137,10 +137,20 @@ PhD="$HOME/PhD"
 WS="$HOME/WorkSpace"
 
 # For LHAPDF to find python and ROOT:
-export PATH=$WS/mg_monoH/LHAPDF-install/bin:$PATH
-export LD_LIBRARY_PATH=$WS/mg_monoH/LHAPDF-install/lib:$LD_LIBRARY_PATH
-export PYTHONPATH=$WS/mg_monoH/LHAPDF-install/lib/python2.7/site-packages:$PYTHONPATH
-export PATH=$PATH:$ROOTSYS:$ROOTSYS/bin
+export PATH=$WS/madgraph/LHAPDF-install/bin:$PATH
+export LD_LIBRARY_PATH=$WS/madgraph/LHAPDF-install/lib:$LD_LIBRARY_PATH
+export PYTHONPATH=$WS/madgraph/LHAPDF-install/lib/python2.7/site-packages:$PYTHONPATH
+#export PATH=$PATH:$ROOTSYS:$ROOTSYS/bin
+
+# Requiered for MadGraph
+export ROOTSYS=/opt/root
+export PATH=$PATH:$ROOTSYS/bin
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$ROOTSYS/lib
+export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$ROOTSYS/lib
+
+# Required for pyROOT
+export LD_LIBRARY_PATH=$ROOTSYS/lib:$PYTHONDIR/lib:$LD_LIBRARY_PATH
+export PYTHONPATH=$ROOTSYS/lib:$PYTHONPATH
 
 # Allows to exclude when calling multiple files/folders
 # Use: rm -rf !(one|two|three) [remove command exclude one, two and three]
@@ -270,17 +280,17 @@ Month: ${month_list[${month#0}]}"
 
 function SyncPhD()
 {
-   unison -auto -batch $HOME/PhD ssh://kribjork@hyper.uio.no/PhD
+   unison -auto -batch -logfile /home/kristian/unison/unison.log $HOME/PhD ssh://kribjork@hyper.uio.no/PhD
 }
 
 function SyncPhD_home()
 {
-   unison -auto -batch $HOME/PhD ssh://kribjork@login.ifi.uio.no/PhD
+   unison -auto -batch -logfile /home/kristian/unison/unison.log $HOME/PhD ssh://kribjork@login.ifi.uio.no/PhD
 }
 
 function SyncPhD_MOD()
 {
-   unison $HOME/PhD ssh://kribjork@hyper.uio.no/PhD
+   unison -logfile /home/kristian/unison/unison.log $HOME/PhD ssh://kribjork@hyper.uio.no/PhD
 }
 
 function BackupPhD()
@@ -327,7 +337,7 @@ function BackupWS()
 DirToBackup="/home/kristian/WorkSpace"
 BackupDir="/scratch2/Backup_laptopWS"
    
-unison -auto -batch $DirToBackup ssh://kribjork@hyper.uio.no/$BackupDir
+unison -auto -batch -logfile /home/kristian/unison/unison.log $DirToBackup ssh://kribjork@hyper.uio.no/$BackupDir
 
 }
 
