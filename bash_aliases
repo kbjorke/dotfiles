@@ -56,8 +56,17 @@ alias gotoPhD='cd $HOME/PhD'
 # Shortcut to get to the WorkSpace folder
 alias gotoWS='cd $HOME/WorkSpace'
 
+# Shortcut to get to the FYS2160 folder
+alias gotoFYS2160='cd $HOME/PhD/teaching/FYS2160'
+
+# Shortcut to get to the MonoH project folder
+alias gotoMonoH='cd $HOME/PhD/project/Mono_Higgs'
+
+# Shortcut to get to the ATLAS folder
+alias gotoATLAS='cd $HOME/PhD/ATLAS'
+
 # Open new fullscreen terminal suitable to write code
-alias work='gnome-terminal.real --profile=CodeWritting --working-directory=$WS --full-screen'
+alias work='gnome-terminal.real --profile=CodeWritting --full-screen'
 
 # Alias to open vim in IDE environment
 alias vimIDE='vim -c "IDE"'

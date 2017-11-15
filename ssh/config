@@ -27,3 +27,8 @@ Host abel
     HostName abel.uio.no
     User kribjork
     ForwardX11 yes
+
+Host oscilloskop
+    HostName oscilloskop.uio.no
+    User kribjork
+    ForwardX11 yes

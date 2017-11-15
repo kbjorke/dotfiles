@@ -131,10 +131,14 @@ eval `dircolors ~/.dir_colors/dircolors-solarized/dircolors.ansi-dark`
 # MAIL=/var/spool/mail/kristian && export MAIL
 
 ROOTSYS="/opt/root/"
-UiO="$HOME/Archive/Universetet\ i\ Oslo"
-US="$HOME/Archive/University\ of\ Sussex"
-PhD="$HOME/PhD"
-WS="$HOME/WorkSpace"
+UiO="$HOME/Archive/Universetet\ i\ Oslo/"
+US="$HOME/Archive/University\ of\ Sussex/"
+PhD="$HOME/PhD/"
+WS="$HOME/WorkSpace/"
+FYS2160="$HOME/PhD/teaching/FYS2160/"
+MonoH="$HOME/PhD/project/Mono_Higgs/"
+ATLAS="$HOME/PhD/ATLAS/"
+
 
 # For LHAPDF to find python and ROOT:
 export PATH=$WS/madgraph/LHAPDF-install/bin:$PATH
@@ -286,6 +290,11 @@ function SyncPhD()
 function SyncPhD_home()
 {
    unison -auto -batch -logfile /home/kristian/unison/unison.log $HOME/PhD ssh://kribjork@login.ifi.uio.no/PhD
+}
+
+function SyncPhD_homeMOD()
+{
+   unison -logfile /home/kristian/unison/unison.log $HOME/PhD ssh://kribjork@login.ifi.uio.no/PhD
 }
 
 function SyncPhD_MOD()
