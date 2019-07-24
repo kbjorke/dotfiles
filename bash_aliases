@@ -56,8 +56,14 @@ alias gotoPhD='cd $HOME/PhD'
 # Shortcut to get to the WorkSpace folder
 alias gotoWS='cd $HOME/WorkSpace'
 
+# Shortcut to get to the Qualification Task folder
+alias gotoQT='cd $HOME/PhD/ATLAS/qualification-task/'
+
 # Shortcut to get to the FYS2160 folder
 alias gotoFYS2160='cd $HOME/PhD/teaching/FYS2160'
+
+# Shortcut to get to the FYS2160 folder
+alias gotoFYSMEK='cd $HOME/PhD/teaching/FYS-MEK1110'
 
 # Shortcut to get to the MonoH project folder
 alias gotoMonoH='cd $HOME/PhD/project/Mono_Higgs'
@@ -74,6 +80,9 @@ alias vimIDE='vim -c "IDE"'
 # Alias that make you pipe to clipboard. Requires xclip.
 alias clipboard="tr -d '\n' | xclip -sel clip"
 alias pwdc="pwd | clipboard" # Current directory to clipboard
+
+# Change directory to clipboard content
+#alias cdc="cd $(xclip -o -selection clipboard)"
 
 # Run MATLAB :
 alias matlab='/opt/matlab/bin/./matlab'
@@ -95,6 +104,22 @@ alias elma2='cd /opt/elma2/ && ./elma2 && cd ~-'
 
 # Run unison
 alias unison='$HOME/unison/./unison-2.40.61-linux-x86_64-text-static'
+
+# To open files ("double-click")
+alias xopen='xdg-open'
+
+# To copy content of file to clipboard
+
+# ssh to workfolder in lxplus
+alias lxplus-work='ssh -t lxplus "cd /afs/cern.ch/work/k/krbjoerk ; bash"'
+
+alias cpcont='xclip -sel c'
+
+# Alias to fix wifi, used when two arrows show not signal strength
+alias fixWifi='sudo systemctl restart network-manager'
+
+# Alias to connect to UiO VPN
+alias uioVPN='sudo vpnc-connect /etc/vpnc/myvpn.conf'
 
 # Functions used to resize terminal.
 function small_terminal()
@@ -121,6 +146,11 @@ function thin_terminal()
 {
    resize -s $LINES 80 > /dev/null
    clear
+}
+
+function search_pdf()
+{
+   pdfgrep -R -n -i ./*
 }
 
 # Aliases used to resize terminal:

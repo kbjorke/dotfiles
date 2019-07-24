@@ -114,7 +114,8 @@ fi
 
 # Setting up directory colors for terminal:
 # Alternatives: 256dark, ansi-dark, ansi-light, ansi-universal
-eval `dircolors ~/.dir_colors/dircolors-solarized/dircolors.ansi-dark`
+#eval `dircolors ~/.dir_colors/dircolors-solarized/dircolors.ansi-dark`
+eval `dircolors ~/.dir_colors/dircolors-solarized/dircolors.ansi-light`
 
 
 # # GnuPG setup for gpg-agent
@@ -159,6 +160,7 @@ export PYTHONPATH=$ROOTSYS/lib:$PYTHONPATH
 # Allows to exclude when calling multiple files/folders
 # Use: rm -rf !(one|two|three) [remove command exclude one, two and three]
 shopt -s extglob
+
 
 function screen_bash()
 {
@@ -217,6 +219,16 @@ sed -i "s:PATH:${path}/:" ${path}/compiletex.sh
 sed -i "s/FILENAME/kbjorke-${title}/" ${path}/compiletex.sh
 sed -i "s/FILENAME/kbjorke-${title}/" ${path}/updatebib.sh
 sed -i "s/FILENAME/kbjorke-${title}/" ${path}/wordcount.sh
+}
+
+function openfirefox()
+{
+   firefox $(cat $1)
+}
+
+function indico()
+{
+   openfirefox ./indico_url.txt
 }
 
 function readlog()
@@ -284,22 +296,22 @@ Month: ${month_list[${month#0}]}"
 
 function SyncPhD()
 {
-   unison -auto -batch -logfile /home/kristian/unison/unison.log $HOME/PhD ssh://kribjork@hyper.uio.no/PhD
+   LC_ALL=C unison -auto -batch -logfile /home/kristian/unison/unison.log $HOME/PhD ssh://kribjork@hyper.uio.no/PhD
 }
 
 function SyncPhD_home()
 {
-   unison -auto -batch -logfile /home/kristian/unison/unison.log $HOME/PhD ssh://kribjork@login.ifi.uio.no/PhD
+   LC_ALL=C unison -auto -batch -logfile /home/kristian/unison/unison.log $HOME/PhD ssh://kribjork@login.ifi.uio.no/PhD
 }
 
 function SyncPhD_homeMOD()
 {
-   unison -logfile /home/kristian/unison/unison.log $HOME/PhD ssh://kribjork@login.ifi.uio.no/PhD
+   LC_ALL=C unison -logfile /home/kristian/unison/unison.log $HOME/PhD ssh://kribjork@login.ifi.uio.no/PhD
 }
 
 function SyncPhD_MOD()
 {
-   unison -logfile /home/kristian/unison/unison.log $HOME/PhD ssh://kribjork@hyper.uio.no/PhD
+   LC_ALL=C unison -logfile /home/kristian/unison/unison.log $HOME/PhD ssh://kribjork@hyper.uio.no/PhD
 }
 
 function BackupPhD()
@@ -316,7 +328,7 @@ function BackupPhD()
 
    echo "Main backup at: kribjork@hyper.uio.no:/scratch/Backup_PhD"
    
-   rsync --recursive --update --delete --perms --owner --group --times --links --safe-links --super --one-file-system --devices $DirToBackup $BackupDir
+   rsync --recursive --exclude-from '/home/kristian/dotfiles/phd-exclude-list.txt' --update --delete --perms --owner --group --times --links --safe-links --super --one-file-system --devices $DirToBackup $BackupDir
 
    echo "Secondary backup at: $Storage/PhDBackup"
 }
@@ -335,7 +347,7 @@ function BackupPhD_home()
 
    echo "Main backup at: kribjork@hyper.uio.no:/scratch/Backup_PhD"
    
-   rsync --recursive --update --delete --perms --owner --group --times --links --safe-links --super --one-file-system --devices $DirToBackup $BackupDir
+   rsync --recursive --exclude-from '/home/kristian/dotfiles/phd-exclude-list.txt' --update --delete --perms --owner --group --times --links --safe-links --super --one-file-system --devices $DirToBackup $BackupDir
 
    echo "Secondary backup at: $Storage/PhDBackup"
 }
@@ -346,7 +358,17 @@ function BackupWS()
 DirToBackup="/home/kristian/WorkSpace"
 BackupDir="/scratch2/Backup_laptopWS"
    
-unison -auto -batch -logfile /home/kristian/unison/unison.log $DirToBackup ssh://kribjork@hyper.uio.no/$BackupDir
+LC_ALL=C unison -auto -batch -logfile /home/kristian/unison/unison.log $DirToBackup ssh://kribjork@hyper.uio.no/$BackupDir
+
+}
+
+function BackupWS_MOD()
+{
+
+DirToBackup="/home/kristian/WorkSpace"
+BackupDir="/scratch2/Backup_laptopWS"
+   
+LC_ALL=C unison -logfile /home/kristian/unison/unison.log $DirToBackup ssh://kribjork@hyper.uio.no/$BackupDir
 
 }
 

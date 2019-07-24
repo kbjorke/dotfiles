@@ -1,0 +1,5 @@
+ATLAS/CSC17/VirtualBox
+ATLAS/tutorials
+teaching/FYS-MEK1110/v2017
+teaching/FYS-MEK1110/v2018
+teaching/FYS2160/h2017
