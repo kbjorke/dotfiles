@@ -37,7 +37,7 @@ fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color) color_prompt=yes;;
+    xterm-color|*-256color) color_prompt=yes;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -114,25 +114,53 @@ fi
 
 # Setting up directory colors for terminal:
 # Alternatives: 256dark, ansi-dark, ansi-light, ansi-universal
-eval `dircolors ~/.dir_colors/dircolors-solarized/dircolors.ansi-dark`
+#eval `dircolors ~/.dir_colors/dircolors-solarized/dircolors.ansi-dark`
+eval `dircolors ~/.dir_colors/dircolors-solarized/dircolors.ansi-light`
 
 
-# GnuPG setup for gpg-agent
-envfile="$HOME/.gnupg/gpg-agent.env"
-#if [[ -e "$envfile" ]] && kill -0 $(grep GPG_AGENT_INFO "$envfile" | cut -d: -f 2) 2>/dev/null; then
-#        eval "$(cat "$envfile")"
-#    else
-#            eval "$(gpg-agent --daemon --enable-ssh-support --write-env-file "$envfile")"
-#        fi
-#        export GPG_AGENT_INFO  # the env file does not contain the export statement
-#        export SSH_AUTH_SOCK   # enable gpg-agent for ssh
-
-# Sets the Mail Environment Variable
-MAIL=/var/spool/mail/kristian && export MAIL
+# # GnuPG setup for gpg-agent
+# envfile="$HOME/.gnupg/gpg-agent.env"
+# #if [[ -e "$envfile" ]] && kill -0 $(grep GPG_AGENT_INFO "$envfile" | cut -d: -f 2) 2>/dev/null; then
+# #        eval "$(cat "$envfile")"
+# #    else
+# #            eval "$(gpg-agent --daemon --enable-ssh-support --write-env-file "$envfile")"
+# #        fi
+# #        export GPG_AGENT_INFO  # the env file does not contain the export statement
+# #        export SSH_AUTH_SOCK   # enable gpg-agent for ssh
+# 
+# # Sets the Mail Environment Variable
+# MAIL=/var/spool/mail/kristian && export MAIL
 
 ROOTSYS="/opt/root/"
-UiO="$HOME/Dokument/University_of_Oslo"
-MSc="$HOME/Dokument/University_of_Sussex/MScProject"
+UiO="$HOME/Archive/Universetet\ i\ Oslo/"
+US="$HOME/Archive/University\ of\ Sussex/"
+PhD="$HOME/PhD/"
+WS="$HOME/WorkSpace/"
+FYS2160="$HOME/PhD/teaching/FYS2160/"
+MonoH="$HOME/PhD/project/Mono_Higgs/"
+ATLAS="$HOME/PhD/ATLAS/"
+
+
+# For LHAPDF to find python and ROOT:
+export PATH=$WS/madgraph/LHAPDF-install/bin:$PATH
+export LD_LIBRARY_PATH=$WS/madgraph/LHAPDF-install/lib:$LD_LIBRARY_PATH
+export PYTHONPATH=$WS/madgraph/LHAPDF-install/lib/python2.7/site-packages:$PYTHONPATH
+#export PATH=$PATH:$ROOTSYS:$ROOTSYS/bin
+
+# Requiered for MadGraph
+export ROOTSYS=/opt/root
+export PATH=$PATH:$ROOTSYS/bin
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$ROOTSYS/lib
+export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$ROOTSYS/lib
+
+# Required for pyROOT
+export LD_LIBRARY_PATH=$ROOTSYS/lib:$PYTHONDIR/lib:$LD_LIBRARY_PATH
+export PYTHONPATH=$ROOTSYS/lib:$PYTHONPATH
+
+# Allows to exclude when calling multiple files/folders
+# Use: rm -rf !(one|two|three) [remove command exclude one, two and three]
+shopt -s extglob
+
 
 function screen_bash()
 {
@@ -154,12 +182,72 @@ function ps_screen_name()
    ps u -p $(ps -el | grep $(ps -el | grep $(screen -ls | grep $screen_name | awk '{print $1}' | sed -e "s/.$screen_name//") | grep bash | awk '{print $4}') | grep bash | awk '{print $4}')
 }
 
+function NewTexReport()
+{
+template_path="/home/kristian/PhD/various/tex_report_template"
+
+title=$1
+
+echo "New LaTeX report kbjorke-${title}.tex created in /report folder"
+
+path="$(pwd)/report"
+
+mkdir ${path}
+
+# Make report folder structure
+mkdir ${path}/aux
+mkdir ${path}/img
+mkdir ${path}/ref
+mkdir ${path}/tex
+mkdir ${path}/var
+mkdir ${path}/lst
+
+# Copy template and scripts into report folder
+cp ${template_path}/kbjorke-TITLE.tex ${path}/kbjorke-${title}.tex
+cp ${template_path}/bib_kbjorke_TITLE.bib ${path}/bib_kbjorke_${title}.bib
+cp ${template_path}/compiletex.sh ${path}/compiletex.sh
+cp ${template_path}/spellcheck.sh ${path}/spellcheck.sh
+cp ${template_path}/updatebib.sh ${path}/updatebib.sh
+cp ${template_path}/wordcount.sh ${path}/wordcount.sh
+
+# Copy example image
+cp ${template_path}/img/WIMP_detection.eps ${path}/img/WIMP_detection.eps
+
+# Change specifics in scripts
+sed -i "s:#TITLE#:${title}:" ${path}/kbjorke-${title}.tex
+sed -i "s:PATH:${path}/:" ${path}/compiletex.sh
+sed -i "s/FILENAME/kbjorke-${title}/" ${path}/compiletex.sh
+sed -i "s/FILENAME/kbjorke-${title}/" ${path}/updatebib.sh
+sed -i "s/FILENAME/kbjorke-${title}/" ${path}/wordcount.sh
+}
+
+function openfirefox()
+{
+   firefox $(cat $1)
+}
+
+function indico()
+{
+   openfirefox ./indico_url.txt
+}
+
+function readlog()
+{
+    log_dir=$HOME/PhD/log
+
+    year=$(ls $log_dir | sort -nr | head -n 1)
+   
+    newest_file=$(ls $log_dir/$year | sort -nr | head -n 1)
+
+    less +G $log_dir/$year/$newest_file 
+}
+
 function log()
 {
-    log_dir=/home/kristian/Dokument/University_of_Oslo/log
+    log_dir=$HOME/PhD/log
 
     month_list=(ZERO January February March April May June July August September October November December)
-    weekday_list=(Sunday Monday Tuesday Wedensday Thursday Friday Saturday)
+    weekday_list=(Sunday Monday Tuesday Wednesday Thursday Friday Saturday)
 
     year=$(date +%Y)
     month=$(date +%m)
@@ -206,75 +294,111 @@ Month: ${month_list[${month#0}]}"
     vim -c "startinsert" + $logfile -c 'normal zz'
 }
 
+function SyncPhD()
+{
+   LC_ALL=C unison -auto -batch -logfile /home/kristian/unison/unison.log $HOME/PhD ssh://kribjork@hyper.uio.no/PhD
+}
+
+function SyncPhD_home()
+{
+   LC_ALL=C unison -auto -batch -logfile /home/kristian/unison/unison.log $HOME/PhD ssh://kribjork@login.ifi.uio.no/PhD
+}
+
+function SyncPhD_homeMOD()
+{
+   LC_ALL=C unison -logfile /home/kristian/unison/unison.log $HOME/PhD ssh://kribjork@login.ifi.uio.no/PhD
+}
+
+function SyncPhD_MOD()
+{
+   LC_ALL=C unison -logfile /home/kristian/unison/unison.log $HOME/PhD ssh://kribjork@hyper.uio.no/PhD
+}
 
 function BackupPhD()
 {
-    mount_point=/dev/sda5
-    
-    if mount | grep "$mount_point" > /dev/null;
-    then
-        Storage=$(mount | grep $mount_point | grep -Po '(on\s)\K[^\s]*')
-        unmount=false
-    else
-        Storage=/media/kristian/storage
-        unmount=true
-    
-        sudo mkdir $Storage
-        sudo mount /dev/sda5 $Storage
-    fi
-    
-    DirToBackup=/home/kristian/Dokument/University_of_Oslo/
-    BackupDir="$Storage/Dokumenter/PhDBackup"
-    
-    
-    timestamp=$(date "+%Y-%m-%d_%H-%M-%S")
-    
-    sudo install --directory "$BackupDir/history/$timestamp"
-    sudo install --directory "$BackupDir/backup/"
-    sudo install --directory "$BackupDir/log/$timestamp"
-    
-    echo "Backup $timestamp"
-    
-    rsync --dry-run --itemize-changes --out-format="%i|%n|"  --recursive --update --delete --perms --owner --group --times --links --safe-links --super --one-file-system --devices $DirToBackup "$BackupDir/backup" | sed '/^ *$/d' > "$BackupDir/log/$timestamp/dryrun.log"
-    
-    grep "^.f" "$BackupDir/log/$timestamp/dryrun.log" >> "$BackupDir/log/$timestamp/onlyfiles.log"
-    grep "^.f+++++++++" "$BackupDir/log/$timestamp/onlyfiles.log" | awk -F '|' '{print $2 }' | sed 's@^/@@' >> "$BackupDir/log/$timestamp/created.log"
-    grep --invert-match "^.f+++++++++" "$BackupDir/log/$timestamp/onlyfiles.log" | grep --invert-match "^.f\.\.\.pog\.\.\." | grep --invert-match "^.f\.\.\.p\.\.\.\.\." | awk -F '|' '{print $2 }' | sed 's@^/@@' >> "$BackupDir/log/$timestamp/changed.log"
-    
-    grep "^\.d" "$BackupDir/log/$timestamp/dryrun.log" | grep --invert-match "^.d\.\.\.pog\.\.\." | grep --invert-match "^.f\.\.\.p\.\.\.\.\." | awk -F '|' '{print $2 }' | sed -e 's@^/@@' -e 's@^\./@@' -e 's@/$@@' >> "$BackupDir/log/$timestamp/changed.log"
-    grep "^cd" "$BackupDir/log/$timestamp/dryrun.log" | awk -F '|' '{print $2 }' | sed -e 's@^/@@' -e 's@/$@@' >> "$BackupDir/log/$timestamp/created.log"
-    
-    grep "^*deleting" "$BackupDir/log/$timestamp/dryrun.log" | awk -F '|' '{print $2 }' >> "$BackupDir/log/$timestamp/deleted.log"
-    
-    cat "$BackupDir/log/$timestamp/deleted.log" > /tmp/tmp.rsync.list
-    cat "$BackupDir/log/$timestamp/changed.log" >> /tmp/tmp.rsync.list
-    sort --output=/tmp/rsync.list --unique /tmp/tmp.rsync.list
-    
-    rsync --update --perms --owner --group --times --links --super --files-from=/tmp/rsync.list "$BackupDir/backup" "$BackupDir/history/$timestamp/"
-    
-    rsync --recursive --update --delete --perms --owner --group --times --links --safe-links --super --one-file-system --devices $DirToBackup "$BackupDir/backup"
-    
-    if mount | grep "$mount_point" > /dev/null;
-    then
-        if $unmount; then
-            sudo umount $Storage
-            sudo rm -r $Storage
-        fi
-    fi
+   SyncPhD
+   echo "PhD syncronized with hyper.uio.no"
 
-    echo "Main backup at: $mount_point/Dokumenter/PhDBackup"
-    
-    rsync --archive --update --verbose --human-readable --compress --rsh=ssh $DirToBackup ifi:pc/PhDBackup
+   Storage=/media/kristian/kbjorke-uio-enc    
 
-    echo "Secondary backup at: kribjork@login.ifi.uio.no:pc/PhDBackup"
+   DirToBackup=/home/kristian/PhD/
+   BackupDir="$Storage/PhDBackup"
+
+   ssh hyper 'bash /scratch/phd_backup.sh'
+
+   echo "Main backup at: kribjork@hyper.uio.no:/scratch/Backup_PhD"
+   
+   rsync --recursive --exclude-from '/home/kristian/dotfiles/phd-exclude-list.txt' --update --delete --perms --owner --group --times --links --safe-links --super --one-file-system --devices $DirToBackup $BackupDir
+
+   echo "Secondary backup at: $Storage/PhDBackup"
 }
+
+function BackupPhD_home()
+{
+   SyncPhD_home
+   echo "PhD syncronized with hyper.uio.no"
+
+   Storage=/media/kristian/kbjorke-uio-enc    
+
+   DirToBackup=/home/kristian/PhD/
+   BackupDir="$Storage/PhDBackup"
+
+   ssh -t ifi ssh hyper 'bash /scratch/phd_backup.sh'
+
+   echo "Main backup at: kribjork@hyper.uio.no:/scratch/Backup_PhD"
+   
+   rsync --recursive --exclude-from '/home/kristian/dotfiles/phd-exclude-list.txt' --update --delete --perms --owner --group --times --links --safe-links --super --one-file-system --devices $DirToBackup $BackupDir
+
+   echo "Secondary backup at: $Storage/PhDBackup"
+}
+
+function BackupWS()
+{
+
+DirToBackup="/home/kristian/WorkSpace"
+BackupDir="/scratch2/Backup_laptopWS"
+   
+LC_ALL=C unison -auto -batch -logfile /home/kristian/unison/unison.log $DirToBackup ssh://kribjork@hyper.uio.no/$BackupDir
+
+}
+
+function BackupWS_MOD()
+{
+
+DirToBackup="/home/kristian/WorkSpace"
+BackupDir="/scratch2/Backup_laptopWS"
+   
+LC_ALL=C unison -logfile /home/kristian/unison/unison.log $DirToBackup ssh://kribjork@hyper.uio.no/$BackupDir
+
+}
+
+function BackupHyperWS()
+{
+   ssh hyper 'bash /scratch/hyperWS_backup.sh'
+}
+
+function BackupHyperWS_home()
+{
+   ssh -t ifi ssh hyper 'bash /scratch/hyperWS_backup.sh'
+}
+
+function BackuplxplusWS()
+{
+   ssh hyper 'bash /scratch/lxplusWS_backup.sh'
+}
+
+function BackuplxplusWS_home()
+{
+   ssh -t ifi ssh hyper 'bash /scratch/lxplusWS_backup.sh'
+}
+
 
 function BackupWebpage()
 {
-    DirToBackup=ifi:www_docs/
-    BackupDir=/home/kristian/Dokument/University_of_Oslo/various/Backup-www_docs/
-    
-    rsync --archive --update --delete --verbose --human-readable --compress --rsh=ssh $DirToBackup $BackupDir
+   DirToBackup=hyper:www_docs/
+   BackupDir=/home/kristian/PhD/various/Backup-www_docs/
+   
+   rsync --archive --update --delete --verbose --human-readable --compress --rsh=ssh $DirToBackup $BackupDir
 
-    echo "Main backup at: $BackupDir"
+   echo "Main backup at: $BackupDir"
 }

@@ -8,16 +8,6 @@ Host lxplus
     User krbjoerk
     ForwardX11 yes
 
-Host lxplus6
-    HostName lxplus6.cern.ch
-    User krbjoerk
-    ForwardX11 yes
-
-Host lxplus7
-    HostName lxplus7.cern.ch
-    User krbjoerk
-    ForwardX11 yes
-
 Host uio
     HostName login.uio.no
     User kribjork
@@ -30,15 +20,5 @@ Host ifi
 
 Host ulrik
     HostName ulrik.uio.no
-    User kribjork
-    ForwardX11 yes
-
-Host abel
-    HostName abel.uio.no
-    User kribjork
-    ForwardX11 yes
-
-Host oscilloskop
-    HostName oscilloskop.uio.no
     User kribjork
     ForwardX11 yes
