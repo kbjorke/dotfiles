@@ -38,3 +38,4 @@ let g:Tex_CompileRule_dvi = 'latex --interaction=nonstopmode $*'
 let g:Tex_CompileRule_ps = 'dvips $*.dvi'
 let g:Tex_CompileRule_pdf = 'ps2pdf $*.ps $*.pdf'
 
+map <c-p> :!bash compiletex.sh <Enter>

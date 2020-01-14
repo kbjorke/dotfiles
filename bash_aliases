@@ -53,6 +53,9 @@ alias gotodotfiles='cd $HOME/dotfiles/'
 # Shortcut to get to the PhD folder
 alias gotoPhD='cd $HOME/PhD'
 
+# Shortcut to get to the Qualification Task folder
+alias gotoThesis='cd $HOME/PhD/project/Thesis/'
+
 # Shortcut to get to the WorkSpace folder
 alias gotoWS='cd $HOME/WorkSpace'
 
@@ -60,7 +63,7 @@ alias gotoWS='cd $HOME/WorkSpace'
 alias gotoQT='cd $HOME/PhD/ATLAS/qualification-task/'
 
 # Shortcut to get to the FYS2160 folder
-alias gotoFYS2160='cd $HOME/PhD/teaching/FYS2160'
+alias gotoFYS2160='cd $HOME/PhD/teaching/FYS2160/h2019'
 
 # Shortcut to get to the FYS2160 folder
 alias gotoFYSMEK='cd $HOME/PhD/teaching/FYS-MEK1110'
@@ -119,7 +122,7 @@ alias cpcont='xclip -sel c'
 alias fixWifi='sudo systemctl restart network-manager'
 
 # Alias to connect to UiO VPN
-alias uioVPN='sudo vpnc-connect /etc/vpnc/myvpn.conf'
+alias uioVPN='sudo vpnc-connect /etc/vpnc/uiovpn.conf'
 
 # Functions used to resize terminal.
 function small_terminal()
