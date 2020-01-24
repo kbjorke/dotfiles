@@ -115,7 +115,7 @@ fi
 # Setting up directory colors for terminal:
 # Alternatives: 256dark, ansi-dark, ansi-light, ansi-universal
 #eval `dircolors ~/.dir_colors/dircolors-solarized/dircolors.ansi-dark`
-eval `dircolors ~/.dir_colors/dircolors-solarized/dircolors.ansi-light`
+#eval `dircolors ~/.dir_colors/dircolors-solarized/dircolors.ansi-light`
 
 
 # # GnuPG setup for gpg-agent
