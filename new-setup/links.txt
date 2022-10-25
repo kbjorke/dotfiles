@@ -1,0 +1,5 @@
+
+Colorschemes:
+https://github.com/toggle-corp/alacritty-colorscheme
+
+
