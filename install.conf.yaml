@@ -29,6 +29,7 @@
 
     # Tmux
     ~/.tmux.conf: tmux/.tmux.conf
+    ~/.tmux/plugins/tpm: tpm
   
     # Vim
     ~/.vimrc: vim/.vimrc
