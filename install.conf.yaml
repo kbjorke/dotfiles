@@ -10,8 +10,11 @@
 
 - clean: ['~']
 
-#- create:
-#  - ~/.vim
+- create:
+  - ~/.config/alacritty
+  - ~/.tmux/plugins
+  - ~/.vim/autoload
+  - ~/.config/nvim
 
 - link:
     # Shell
