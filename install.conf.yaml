@@ -1,0 +1,42 @@
+# Dotbot config
+# https://github.com/anishathalye/dotbot
+
+# install.conf.yaml
+- defaults:
+    link:
+      relink: true
+      #create: true
+      force: true
+
+- clean: ['~']
+
+#- create:
+#  - ~/.vim
+
+- link:
+    # Shell
+    ~/.bashrc: shell/.bashrc
+    ~/.bash_aliases: shell/.bash_aliases
+    ~/.zshrc: shell/.zshrc
+    ~/.p10k.zsh: shell/.p10k.zsh
+
+    # Alacritty
+    ~/.config/alacritty/alacritty.yml: alacritty/alacritty.yml
+    
+    # Git
+    #~/.gitconfig: git/.gitconfig
+    #~/.gitignore: git/.gitignore
+
+    # Tmux
+    ~/.tmux.conf: tmux/.tmux.conf
+  
+    # Vim
+    ~/.vimrc: vim/.vimrc
+    ~/.config/nvim/init.vim: vim/nvim/init.vim
+    #~/.vim/indent/html.vim: vim/indent/html.vim
+    ~/.vim/autoload/plug.vim: vim-plug/plug.vim
+
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]
+  #- [chsh -s $(which zsh), Making zsh the default shell]
+  #- [git config --global core.excludesFile '~/.gitignore', Set global .gitignore]
