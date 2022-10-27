@@ -16,6 +16,9 @@
   - ~/.vim/autoload
   - ~/.config/nvim
 
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]
+
 - link:
     # Shell
     ~/.bashrc: shell/.bashrc
@@ -41,6 +44,6 @@
     ~/.vim/autoload/plug.vim: vim-plug/plug.vim
 
 - shell:
-  - [git submodule update --init --recursive, Installing submodules]
+  #- [git submodule update --init --recursive, Installing submodules]
   #- [chsh -s $(which zsh), Making zsh the default shell]
   #- [git config --global core.excludesFile '~/.gitignore', Set global .gitignore]
