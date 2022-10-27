@@ -14,5 +14,11 @@ set clipboard^=unnamed,unnamedplus
 set laststatus=2
 
 call plug#begin()
-Plug 'https://github.com/tpope/vim-obsession.git'
+Plug 'tpope/vim-obsession'
+Plug 'tpope/vim-sensible'
 call plug#end()
+
+"syntax on
+"filetype plugin indent on
+"
+"autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab

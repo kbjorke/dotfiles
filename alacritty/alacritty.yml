@@ -4,6 +4,7 @@ window:
   # Spread additional padding evenly around the terminal content.
   dynamic_padding: true
   opacity: 1.00
+  startup_mode: Fullscreen
 
 font:
   size: 13.0
@@ -11,3 +12,6 @@ font:
 #    family: "MesloLGS NF"
 #    family: Hack Nerd Font Mono
 #    style: Regular
+
+shell:
+  program: /usr/bin/zsh
