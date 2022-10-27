@@ -79,8 +79,12 @@ antigen apply
 # Default editor
 export EDITOR=nvim
 
+# autosuggestions keybindings
+#bindkey '^ ' autosuggest-accept
+bindkey '^E' autosuggest-accept
+
 # Needs to go after antigen
-#source ~/.aliases
+source ~/.bash_aliases
 
 
 ## Commented out until gcloud supports Python 3.10

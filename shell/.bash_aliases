@@ -8,9 +8,9 @@ alias lsR='ls -lhR'
 
 # Alias git commands
 alias g='git'
-alias gst='git status'
-alias gad='git add'
-alias gcm='git commit -m'
+alias gs='git status'
+alias ga='git add'
+alias gc='git commit -m'
 alias gp='git push'
 alias gd='git diff'
 
