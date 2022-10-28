@@ -18,6 +18,7 @@
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
+  - [curl -sL install-node.now.sh | sudo bash, Installing Node.js]
 
 - link:
     # Shell

@@ -16,7 +16,11 @@ set laststatus=2
 call plug#begin()
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-sensible'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
+
+" Coc-nvim extensions
+let g:coc_global_extensions = ['coc-clangd', 'coc-yaml', 'coc-texlab', 'coc-sh', 'coc-pyright']
 
 "syntax on
 "filetype plugin indent on
