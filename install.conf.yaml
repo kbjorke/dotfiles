@@ -44,7 +44,8 @@
     #~/.vim/indent/html.vim: vim/indent/html.vim
     ~/.vim/autoload/plug.vim: vim-plug/plug.vim
 
-#- shell:
+- shell:
+  - [nvim --headless +PlugInstall +qall]
   #- [git submodule update --init --recursive, Installing submodules]
   #- [chsh -s $(which zsh), Making zsh the default shell]
   #- [git config --global core.excludesFile '~/.gitignore', Set global .gitignore]
