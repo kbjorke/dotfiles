@@ -86,6 +86,7 @@ bindkey '^E' autosuggest-accept
 # Needs to go after antigen
 source ~/.bash_aliases
 
+source /etc/zsh_command_not_found
 
 ## Commented out until gcloud supports Python 3.10
 ## https://issuetracker.google.com/issues/205238176
