@@ -41,9 +41,6 @@ let g:pencil_neutral_code_bg = 1   " 0=gray (def), 1=normal
 let g:pencil_gutter_color = 1      " 0=mono (def), 1=color
 let g:pencil_spell_undercurl = 1       " 0=underline, 1=undercurl (def)
 let g:pencil_terminal_italics = 1
-let g:airline_theme = 'pencil'
 
-"syntax on
-"filetype plugin indent on
-"
-"autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+" Enable pencil airline theme
+let g:airline_theme = 'pencil'
