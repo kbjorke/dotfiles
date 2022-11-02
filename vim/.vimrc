@@ -14,8 +14,14 @@ set clipboard^=unnamed,unnamedplus
 set laststatus=2
 
 call plug#begin()
+" Save current state of vim files (necessary for restoring tmux sessions):
 Plug 'tpope/vim-obsession'
+" Sensible vim settings:
 Plug 'tpope/vim-sensible'
+" Statusline for vim:
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+" Programming language support for vim:
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
