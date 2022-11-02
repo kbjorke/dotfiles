@@ -23,10 +23,25 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " Programming language support for vim:
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Pencil color scheme for vim
+Plug 'preservim/vim-colors-pencil'
 call plug#end()
 
 " Coc-nvim extensions
 let g:coc_global_extensions = ['coc-clangd', 'coc-yaml', 'coc-texlab', 'coc-sh', 'coc-pyright']
+
+" Enable Pencil light color scheme
+set background=light
+colorscheme pencil
+
+" Pencil color scheme configurations
+let g:pencil_higher_contrast_ui = 1   " 0=low (def), 1=high
+let g:pencil_neutral_headings = 0   " 0=blue (def), 1=normal
+let g:pencil_neutral_code_bg = 1   " 0=gray (def), 1=normal
+let g:pencil_gutter_color = 1      " 0=mono (def), 1=color
+let g:pencil_spell_undercurl = 1       " 0=underline, 1=undercurl (def)
+let g:pencil_terminal_italics = 1
+let g:airline_theme = 'pencil'
 
 "syntax on
 "filetype plugin indent on

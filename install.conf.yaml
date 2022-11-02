@@ -26,6 +26,7 @@
     ~/.bash_aliases: shell/.bash_aliases
     ~/.zshrc: shell/.zshrc
     ~/.p10k.zsh: shell/.p10k.zsh
+    ~/.vim/3024.vim: vim/3024.vim
 
     # Alacritty
     ~/.config/alacritty/alacritty.yml: alacritty/alacritty.yml
