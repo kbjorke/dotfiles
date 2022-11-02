@@ -45,7 +45,10 @@ let g:pencil_terminal_italics = 1
 " Enable pencil airline theme
 let g:airline_theme = 'pencil'
 
-" Coc-nvim configs
+" Set relative line number
+set relativenumber
+
+" Coc-nvim configs:
 
 " May need for vim (not neovim) since coc.nvim calculate byte offset by count
 " utf-8 byte sequence.
