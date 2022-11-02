@@ -1,8 +1,6 @@
 
-sudo apt install vim git curl zsh neovim tree htop bat exa ripgrep fd-find tmux
-
 sudo add-apt-repository ppa:aslatter/ppa -y
-sudo apt install alacritty
+sudo apt install alacritty vim git curl zsh neovim tree htop bat exa ripgrep fd-find tmux
 
 curl -sL install-node.now.sh | sudo bash
 
