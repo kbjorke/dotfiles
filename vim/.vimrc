@@ -45,8 +45,9 @@ let g:pencil_terminal_italics = 1
 " Enable pencil airline theme
 let g:airline_theme = 'pencil'
 
-" Set relative line number
+" Set hybrid line number
 set relativenumber
+set nu rnu
 
 " Coc-nvim configs:
 
