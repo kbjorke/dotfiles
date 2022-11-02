@@ -45,6 +45,9 @@ let g:pencil_terminal_italics = 1
 " Enable pencil airline theme
 let g:airline_theme = 'pencil'
 
+" Enable powerline fonts
+let g:airline_powerline_fonts = 1
+
 " Set hybrid line number
 set relativenumber
 set nu rnu
