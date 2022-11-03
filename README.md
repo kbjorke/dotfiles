@@ -82,6 +82,7 @@ prefix + I
 	- https://github.com/tmux-plugins/tmux-resurrect
 	- https://github.com/tmux-plugins/tmux-continuum
 	- https://github.com/tmux-plugins/tmux-cpu
+	- https://github.com/tmux-plugins/tmux-battery
 - Neovim: https://github.com/neovim/neovim
 	- Plugin manager (vim-plug): https://github.com/junegunn/vim-plug
 	- Airline: https://github.com/vim-airline/vim-airline
