@@ -6,7 +6,8 @@ Install required programs:
 
 ```bash
 sudo add-apt-repository ppa:aslatter/ppa -y
-sudo apt install alacritty vim git curl zsh neovim tree htop bat exa ripgrep fd-find tmux
+sudo apt install alacritty vim git curl zsh tree htop bat exa ripgrep fd-find fzf tmux gcc
+sudo snap install nvim --classic
 ```
 
 Install Node.js:
@@ -48,3 +49,11 @@ Install/link dotfiles (installs submodule/plugins):
 cd dotfiles/
 ./install
 ```
+
+## Inspiration
+
+- https://github.com/ctaylo21/jarvis
+	- https://www.freecodecamp.org/news/coding-like-a-hacker-in-the-terminal-79e22954968e
+	- https://www.freecodecamp.org/news/a-guide-to-modern-web-development-with-neo-vim-333f7efbf8e2/
+- https://github.com/davidmytton/dotfiles
+	- https://console.dev/articles/neovim-best-code-editor-ide-for-developers/

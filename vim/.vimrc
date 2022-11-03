@@ -1,3 +1,6 @@
+scriptencoding utf-8
+"source ~/.config/nvim/plugins.vim
+
 "function! BackupDir()
 "   let l:backupdir=$HOME.'/.vim/backup/'.expand('%:p:h')
 "               "\substitute(expand('%:p:h'), '^'.$HOME, 'HOME', '')
@@ -25,6 +28,17 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Pencil color scheme for vim
 Plug 'preservim/vim-colors-pencil'
+" Trailing whitespace highlighting & automatic fixing
+Plug 'ntpeters/vim-better-whitespace'
+" auto-close plugin
+Plug 'rstacruz/vim-closer'
+" Telescope and dependencies
+Plug 'nvim-lua/plenary.nvim'
+Plug 'BurntSushi/ripgrep'
+Plug 'sharkdp/fd'
+Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-tree/nvim-web-devicons'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 call plug#end()
 
 " Coc-nvim extensions
@@ -51,6 +65,18 @@ let g:airline_powerline_fonts = 1
 " Set hybrid line number
 set relativenumber
 set nu rnu
+
+" Hides buffers instead of closing them
+set hidden
+
+" Telescope configs:
+
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
 
 " Coc-nvim configs:
 
