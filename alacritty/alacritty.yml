@@ -10,7 +10,6 @@ font:
   size: 13.0
   normal:
     family: "MesloLGS NF"
-#    family: Hack Nerd Font Mono
     style: Regular
 
 shell:

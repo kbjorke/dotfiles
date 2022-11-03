@@ -43,11 +43,18 @@ Clone repository:
 git clone git@github.com:kbjorke/dotfiles.git
 ```
 
+Install fonts from `fonts/MesloLGS NF Regular.ttf`.
+
 Install/link dotfiles (installs submodule/plugins):
 
 ```bash
 cd dotfiles/
 ./install
+```
+
+Install/update tmux plugins:
+```bash
+prefix + I
 ```
 
 ## Inspiration
@@ -57,3 +64,26 @@ cd dotfiles/
 	- https://www.freecodecamp.org/news/a-guide-to-modern-web-development-with-neo-vim-333f7efbf8e2/
 - https://github.com/davidmytton/dotfiles
 	- https://console.dev/articles/neovim-best-code-editor-ide-for-developers/
+
+## Tools and significant plugins
+
+- Dotbot: https://github.com/anishathalye/dotbot/tree/d2f76a25933f97cd37ef94e3bf9c134b9c55a02a
+- Alacritty: https://github.com/alacritty/alacritty
+	- alacritty-themes: https://github.com/rajasegar/alacritty-themes
+- Zsh: https://www.zsh.org/
+	- Plugin manager (antigen): https://github.com/zsh-users/antigen
+	- Oh My Zsh: https://github.com/ohmyzsh/ohmyzsh
+	- Powerlevel10k: https://github.com/romkatv/powerlevel10k
+	- https://github.com/zsh-users/zsh-syntax-highlighting
+	- https://github.com/zsh-users/zsh-autosuggestions
+	- https://github.com/agkozak/zsh-z
+- Tmux: https://github.com/tmux/tmux
+	- Plugin manager (tpm): https://github.com/tmux-plugins/tpm
+	- https://github.com/tmux-plugins/tmux-resurrect
+	- https://github.com/tmux-plugins/tmux-continuum
+	- https://github.com/tmux-plugins/tmux-cpu
+- Neovim: https://github.com/neovim/neovim
+	- Plugin manager (vim-plug): https://github.com/junegunn/vim-plug
+	- Airline: https://github.com/vim-airline/vim-airline
+	- Coc.nvim: https://github.com/neoclide/coc.nvim
+	- Telescope: https://github.com/nvim-telescope/telescope.nvim
