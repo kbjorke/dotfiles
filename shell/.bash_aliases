@@ -38,3 +38,6 @@ alias pwdc="pwd | clipboard" # Current directory to clipboard
 
 # Python alias
 alias python=python3
+
+# NeoVim alias
+alias nv=nvim
