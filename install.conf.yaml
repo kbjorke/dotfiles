@@ -40,3 +40,4 @@
 
 - shell:
   - [nvim --headless +PlugInstall +qall]
+  - [vim +slient +VimEnter +PlugInstall +qall]
