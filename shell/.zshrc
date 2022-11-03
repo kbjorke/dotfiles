@@ -83,26 +83,10 @@ export EDITOR=nvim
 #bindkey '^ ' autosuggest-accept
 bindkey '^E' autosuggest-accept
 
-# Needs to go after antigen
-source ~/.bash_aliases
+# Load custom aliases (needs to go after antigen)
+[[ -s "$HOME/.bash_aliases" ]] && source "$HOME/.bash_aliases"
 
 source /etc/zsh_command_not_found
-
-## Commented out until gcloud supports Python 3.10
-## https://issuetracker.google.com/issues/205238176
-#if [ -d '/opt/homebrew/opt/python@3.9' ]; then PATH="/opt/homebrew/opt/python@3.9/bin:$PATH"; fi
-##if [ -d '/opt/homebrew/opt/python@3.10' ]; then PATH="/opt/homebrew/opt/python@3.10/bin:$PATH"; fi
-#
-#if [ -d '/Users/david/go/bin' ]; then path+=('/Users/david/go/bin'); fi
-#if [ -d '/opt/metasploit-framework/bin/' ]; then path+=('/opt/metasploit-framework/bin/'); fi
-#if [ -d '/opt/homebrew/opt/mysql-client/bin' ]; then path+=('/opt/homebrew/opt/mysql-client/bin'); fi
-#
-## The next line updates PATH for the Google Cloud SDK.
-#if [ -f '/Users/david/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/david/Downloads/google-cloud-sdk/path.zsh.inc'; fi
-#
-## The next line enables shell command completion for gcloud.
-#if [ -f '/Users/david/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/david/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
-#
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
