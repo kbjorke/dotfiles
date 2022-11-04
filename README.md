@@ -6,7 +6,7 @@ Install required programs:
 
 ```bash
 sudo add-apt-repository ppa:aslatter/ppa -y
-sudo apt install alacritty vim git curl zsh tree htop bat exa ripgrep fd-find fzf tmux gcc
+sudo apt install alacritty vim git curl zsh tree htop bat exa ripgrep fd-find fzf tmux gcc python3-pip
 sudo snap install nvim --classic
 ```
 

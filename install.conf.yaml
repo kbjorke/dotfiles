@@ -42,5 +42,8 @@
     ~/.vim/autoload/plug.vim: vim-plug/plug.vim
 
 - shell:
-  - [nvim --headless +PlugInstall +qall]
+  - [nvim --headless +Plugnstall +qall]
   - [vim +slient +VimEnter +PlugInstall +qall]
+  # Optional
+  - [pip install pynvim --upgrade]
+  - [npm install -g neovim]
