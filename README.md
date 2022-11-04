@@ -22,6 +22,7 @@ Git settings:
 git config --global user.name "Kristian L. Bjørke"
 git config --global user.email "kbjorke@gmail.com"
 git config --global core.editor vim
+git config --global --replace-all core.pager "less -F -X"
 ```
 
 Set ssh key:
