@@ -1,6 +1,0 @@
-
-# Colorschemes:
-https://github.com/toggle-corp/alacritty-colorscheme
-
-# bashrc/zshrc setup:
-https://medium.com/codex/how-and-why-you-should-split-your-bashrc-or-zshrc-files-285e5cc3c843
