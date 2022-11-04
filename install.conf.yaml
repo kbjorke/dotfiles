@@ -20,24 +20,27 @@
   - [git submodule update --init --recursive, Installing submodules]
 
 - link:
+    # Fonts
+    ~/.fonts: fonts
+
     # Alacritty
     ~/.config/alacritty/alacritty.yml: alacritty/alacritty.yml
 
     # Shell
-    ~/.bashrc: shell/.bashrc
-    ~/.bash_aliases: shell/.bash_aliases
-    ~/.zshrc: shell/.zshrc
-    ~/.p10k.zsh: shell/.p10k.zsh
+    ~/.bashrc: shell/bashrc
+    ~/.bash_aliases: shell/bash_aliases
+    ~/.zshrc: shell/zshrc
+    ~/.p10k.zsh: shell/p10k.zsh
 
     # Tmux
-    ~/.tmux.conf: tmux/.tmux.conf
+    ~/.tmux.conf: tmux/tmux.conf
     ~/.tmux/plugins/tpm: tpm
 
     # Vim
-    ~/.vimrc: vim/.vimrc
+    ~/.vimrc: vim/vimrc
     ~/.config/nvim/init.vim: vim/nvim/init.vim
     ~/.vim/autoload/plug.vim: vim-plug/plug.vim
 
 - shell:
-  - [nvim --headless +PlugInstall +qall]
   - [vim +slient +VimEnter +PlugInstall +qall]
+  - [nvim --headless +PlugInstall +qall]

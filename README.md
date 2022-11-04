@@ -43,8 +43,6 @@ Clone repository:
 git clone git@github.com:kbjorke/dotfiles.git
 ```
 
-Install fonts from `fonts/MesloLGS NF Regular.ttf`.
-
 Install/link dotfiles (installs submodule/plugins):
 
 ```bash
@@ -52,7 +50,7 @@ cd dotfiles/
 ./install
 ```
 
-Install/update tmux plugins:
+Install/update tmux plugins (in tmux session):
 ```bash
 prefix + I
 ```
