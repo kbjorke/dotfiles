@@ -42,5 +42,5 @@
     ~/.vim/autoload/plug.vim: vim-plug/plug.vim
 
 - shell:
-  - [vim +slient +VimEnter +PlugInstall +qall]
   - [nvim --headless +PlugInstall +qall]
+  - [vim +slient +VimEnter +PlugInstall +qall]

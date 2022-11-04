@@ -46,7 +46,7 @@ let g:coc_global_extensions = ['coc-clangd', 'coc-yaml', 'coc-texlab', 'coc-sh',
 
 " Enable Pencil light color scheme
 set background=light
-colorscheme pencil
+silent! colorscheme pencil
 
 " Pencil color scheme configurations
 let g:pencil_higher_contrast_ui = 1   " 0=low (def), 1=high
