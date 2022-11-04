@@ -1,5 +1,4 @@
 scriptencoding utf-8
-"source ~/.config/nvim/plugins.vim
 
 "function! BackupDir()
 "   let l:backupdir=$HOME.'/.vim/backup/'.expand('%:p:h')
@@ -23,7 +22,8 @@ Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-sensible'
 " Statusline for vim:
 Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'tpope/vim-fugitive'
+"Plug 'vim-airline/vim-airline-themes'
 " Programming language support for vim:
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Pencil color scheme for vim
@@ -56,11 +56,12 @@ let g:pencil_gutter_color = 1      " 0=mono (def), 1=color
 let g:pencil_spell_undercurl = 1       " 0=underline, 1=undercurl (def)
 let g:pencil_terminal_italics = 1
 
-" Enable pencil airline theme
-let g:airline_theme = 'pencil'
-
 " Enable powerline fonts
 let g:airline_powerline_fonts = 1
+
+" Airline definitions
+let g:airline#extensions#branch#enabled = 1
+let g:airline_section_z = '%p%% L:%l/%L C:%c'
 
 " Set hybrid line number
 set relativenumber
