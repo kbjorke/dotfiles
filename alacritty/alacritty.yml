@@ -4,7 +4,7 @@ window:
   # Spread additional padding evenly around the terminal content.
   dynamic_padding: true
   opacity: 1.00
-  startup_mode: Fullscreen
+  startup_mode: Maximized
 
 font:
   size: 13.0
