@@ -56,6 +56,78 @@ Install/update tmux plugins (in tmux session):
 prefix + I
 ```
 
+## Custom settings
+
+### Zsh
+
+Oh My Zsh cheatsheet: https://github.com/ohmyzsh/ohmyzsh/wiki/Cheatsheet
+
+Git: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git
+
+Accept autosuggestions in terminal propmt:
+```bash
+CTRL + E
+```
+
+Fuzzy find functions:
+- `fo`: Open file with editor
+- `fh`: Search in command history
+- `fgb`: Checkout specified branch
+- `ftm`: Create new tmux session or switch to existing
+- `ftmk`: Delete tmux session
+- `fgr`: Ripgrep and open in editor at line number
+
+### Tmux
+
+Tmux cheatsheet: https://tmuxcheatsheet.com/
+
+Custom aliases: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/tmux
+
+Prefix:
+```bash
+CTRL + S
+```
+
+Pane navigation: Vim navigation
+
+Last window:
+```bash
+PREFIX B
+```
+
+Tmux-resurrect:
+- Save current sessions: `PREFIX S`
+- Restore saved sessions: `PREFIX R`
+
+### Vim/Neovim
+
+Cheatsheet: https://devhints.io/vim
+
+Vim-sensible: https://towardsdatascience.com/explaining-every-line-of-vim-sensible-b776affec51a
+
+#### Coc.nvim
+
+Scroll suggestion list: `TAB`
+
+Accept suggestion: `ENTER`
+
+#### Telescope
+
+- `ff`: Find files using fuzzy find
+- `fg`: Live grep using ripgrep
+- `fb`: Browse buffers
+- `fh`: Help tags
+
+#### Vim Better Whitespace
+
+Enable/disalbe whitespace highlighting:
+- `:EnableWhitespace`
+- `:DisableWhitespace`
+- `:ToggleWhitespace`
+
+Clean whitespaces:
+- `:StripWhitespace`
+
 ## Inspiration
 
 - https://github.com/ctaylo21/jarvis
@@ -85,5 +157,7 @@ prefix + I
 - Neovim: https://github.com/neovim/neovim
 	- Plugin manager (vim-plug): https://github.com/junegunn/vim-plug
 	- Airline: https://github.com/vim-airline/vim-airline
+	- Better Whitespace: https://github.com/ntpeters/vim-better-whitespace
+	- Vim Closer: https://github.com/rstacruz/vim-closer
 	- Coc.nvim: https://github.com/neoclide/coc.nvim
 	- Telescope: https://github.com/nvim-telescope/telescope.nvim
