@@ -53,7 +53,7 @@ cd dotfiles/
 
 Install/update tmux plugins (in tmux session):
 ```bash
-prefix + I
+PREFIX + I
 ```
 
 ## Custom settings
@@ -92,12 +92,12 @@ Pane navigation: Vim navigation
 
 Last window:
 ```bash
-PREFIX B
+PREFIX + B
 ```
 
 Tmux-resurrect:
-- Save current sessions: `PREFIX S`
-- Restore saved sessions: `PREFIX R`
+- Save current sessions: `PREFIX + SHIFT + S`
+- Restore saved sessions: `PREFIX + SHIFT + R`
 
 ### Vim/Neovim
 
