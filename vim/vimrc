@@ -1,16 +1,5 @@
 scriptencoding utf-8
 
-"function! BackupDir()
-"   let l:backupdir=$HOME.'/.vim/backup/'.expand('%:p:h')
-"               "\substitute(expand('%:p:h'), '^'.$HOME, 'HOME', '')
-"   if !isdirectory(l:backupdir)
-"      call mkdir(l:backupdir, 'p', 0700)
-"   endif
-"endfunction
-"
-"autocmd! BufWritePre * :call BackupDir()
-"autocmd! BufWritePost * silent! execute "w" $HOME . "/.vim/backup" . expand("%:p:h") . "/" . expand("%") . strftime("~%Y-%m-%d_%H-%M-%S~")
-
 set clipboard^=unnamed,unnamedplus
 
 set laststatus=2
@@ -23,7 +12,6 @@ Plug 'tpope/vim-sensible'
 " Statusline for vim:
 Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-fugitive'
-"Plug 'vim-airline/vim-airline-themes'
 " Programming language support for vim:
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Pencil color scheme for vim
